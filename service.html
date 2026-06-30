@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stackly Mutual Fund Advisory Service Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="service.css">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="./home.html" class="logo"><i class="fas fa-chart-line"></i> Stackly</a>
+    <ul class="nav-links">
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./blog.html">blog</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <a href="./login.html" class="btn-gold nav-cta" style="padding:11px 24px;font-size:.86rem;">Login <i class="fas fa-arrow-right"></i></a>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./home.html">Home</a>
+<a href="./about.html">About</a>
+<a href="./service.html">Services</a>
+<a href="./blog.html">blog</a>
+<a href="./contact.html">Contact</a>
+  <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
+</div>
+
+<div class="sections">
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 1 : PAGE HERO
+══════════════════════════════════════════ -->
+<section id="svc-hero">
+  <div class="svc-hero-bg"></div>
+  <div class="svc-hero-overlay"></div>
+  <div class="container">
+    <div class="svc-hero-inner reveal">
+      <div class="breadcrumb">
+        <a href="./home.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Services</span>
+      </div>
+      <span class="section-tag"><i class="fas fa-briefcase"></i> What We Offer</span>
+      <h1 class="svc-hero-title">Advisory Services Built Around <span>Your Goals</span></h1>
+      <p class="svc-hero-sub">From your first SIP to complex multi-crore portfolios, Stackly delivers research-backed, fiduciary-first mutual fund advisory at every stage of your wealth journey.</p>
+      <div class="svc-hero-stats">
+        <div class="svc-stat"><div class="svc-stat-num">6</div><div class="svc-stat-lbl">Core Services</div></div>
+        <div class="svc-stat"><div class="svc-stat-num">18K+</div><div class="svc-stat-lbl">Clients Served</div></div>
+        <div class="svc-stat"><div class="svc-stat-num">22%</div><div class="svc-stat-lbl">Avg CAGR</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 2 : SERVICE GRID
+══════════════════════════════════════════ -->
+<section id="svc-grid">
+  <div class="container">
+    <div class="svc-grid-header reveal">
+      <span class="section-tag"><i class="fas fa-layer-group"></i> Our Expertise</span>
+      <h2 class="section-title">Six Pillars of <span>Smart Investing</span></h2>
+      <p class="section-sub">Every service is backed by our proprietary 42-point fund screening process and a dedicated personal advisor.</p>
+    </div>
+    <div class="svc-cards">
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80" alt="Portfolio Construction"/>
+          <div class="svc-card-icon"><i class="fas fa-chart-pie"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>Portfolio Construction</h3>
+          <p>Custom-built mutual fund portfolios aligned with your risk appetite, time horizon, and financial goals — reviewed quarterly.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=600&auto=format&fit=crop&q=80" alt="SIP Planning"/>
+          <div class="svc-card-icon"><i class="fas fa-rotate"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>SIP Planning</h3>
+          <p>Systematic investment plans structured to harness rupee-cost averaging and compounding for long-term wealth creation.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600&auto=format&fit=crop&q=80" alt="Retirement Planning"/>
+          <div class="svc-card-icon"><i class="fas fa-piggy-bank"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>Retirement Planning</h3>
+          <p>Goal-based retirement funds mapped to your expected retirement age, lifestyle, and inflation-adjusted corpus requirements.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&auto=format&fit=crop&q=80" alt="Tax Saving ELSS"/>
+          <div class="svc-card-icon"><i class="fas fa-seedling"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>Tax Saving (ELSS)</h3>
+          <p>Equity Linked Savings Schemes offering ₹1.5L tax deduction under Section 80C with the shortest lock-in among 80C instruments.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80" alt="Corporate Treasury"/>
+          <div class="svc-card-icon"><i class="fas fa-building"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>Corporate Treasury</h3>
+          <p>Liquid and ultra-short debt funds designed to optimise corporate surplus cash with better yields than bank FDs.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=80" alt="International Funds"/>
+          <div class="svc-card-icon"><i class="fas fa-earth-asia"></i></div>
+        </div>
+        <div class="svc-card-body">
+          <h3>International Funds</h3>
+          <p>Access global markets and diversify beyond Indian equities with curated international and thematic fund recommendations.</p>
+          <a href="#" class="svc-link">Explore Service <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 3 : PROCESS / HOW WE WORK
+══════════════════════════════════════════ -->
+<section id="svc-process">
+  <div class="container">
+    <div class="svc-process-header reveal">
+      <span class="section-tag"><i class="fas fa-route"></i> Our Process</span>
+      <h2 class="section-title">How We <span>Deliver Every Service</span></h2>
+    </div>
+    <div class="svc-process-grid">
+      <div class="svc-step reveal">
+        <div class="svc-step-circle"><i class="fas fa-user-plus"></i></div>
+        <div class="svc-step-num">01</div>
+        <h3>Discovery Call</h3>
+        <p>We understand your goals, income, liabilities and risk tolerance in a free 30-minute session.</p>
+      </div>
+      <div class="svc-step reveal">
+        <div class="svc-step-circle"><i class="fas fa-magnifying-glass-chart"></i></div>
+        <div class="svc-step-num">02</div>
+        <h3>Fund Screening</h3>
+        <p>Our 42-parameter model filters the best risk-adjusted funds matching your exact profile.</p>
+      </div>
+      <div class="svc-step reveal">
+        <div class="svc-step-circle"><i class="fas fa-file-contract"></i></div>
+        <div class="svc-step-num">03</div>
+        <h3>Plan Delivery</h3>
+        <p>Receive a detailed allocation plan with fund names, percentages, and expected outcomes.</p>
+      </div>
+      <div class="svc-step reveal">
+        <div class="svc-step-circle"><i class="fas fa-rotate-right"></i></div>
+        <div class="svc-step-num">04</div>
+        <h3>Ongoing Review</h3>
+        <p>Quarterly rebalancing, real-time tracking, and direct access to your dedicated advisor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 4 : PRICING / PLANS
+══════════════════════════════════════════ -->
+<section id="svc-pricing">
+  <div class="container">
+    <div class="svc-pricing-header reveal">
+      <span class="section-tag"><i class="fas fa-tags"></i> Transparent Pricing</span>
+      <h2 class="section-title">Choose Your <span>Advisory Plan</span></h2>
+      <p class="section-sub">Flat fees. Zero commissions. Zero hidden charges — cancel anytime.</p>
+    </div>
+    <div class="svc-pricing-grid">
+      <div class="price-card reveal">
+        <h4>Starter</h4>
+        <div class="price-amt">₹999<span>/month</span></div>
+        <p class="price-desc">For new investors beginning their SIP journey.</p>
+        <ul class="price-list">
+          <li><i class="fas fa-check"></i> Up to ₹10L portfolio</li>
+          <li><i class="fas fa-check"></i> Quarterly review calls</li>
+          <li><i class="fas fa-check"></i> SIP planning & ELSS</li>
+          <li><i class="fas fa-check"></i> Email support</li>
+        </ul>
+        <a href="#" class="btn-outline price-btn">Get Started</a>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-badge">Most Popular</div>
+        <h4>Growth</h4>
+        <div class="price-amt">₹2,499<span>/month</span></div>
+        <p class="price-desc">For serious investors building long-term wealth.</p>
+        <ul class="price-list">
+          <li><i class="fas fa-check"></i> Up to ₹50L portfolio</li>
+          <li><i class="fas fa-check"></i> Monthly review calls</li>
+          <li><i class="fas fa-check"></i> Full service suite</li>
+          <li><i class="fas fa-check"></i> Priority phone support</li>
+          <li><i class="fas fa-check"></i> Tax-loss harvesting</li>
+        </ul>
+        <a href="#" class="btn-gold price-btn">Get Started</a>
+      </div>
+      <div class="price-card reveal">
+        <h4>Wealth</h4>
+        <div class="price-amt">Custom</div>
+        <p class="price-desc">For HNI individuals & corporate treasuries.</p>
+        <ul class="price-list">
+          <li><i class="fas fa-check"></i> ₹50L+ portfolio</li>
+          <li><i class="fas fa-check"></i> Dedicated advisor</li>
+          <li><i class="fas fa-check"></i> International funds access</li>
+          <li><i class="fas fa-check"></i> 24/7 priority support</li>
+          <li><i class="fas fa-check"></i> Estate planning add-on</li>
+        </ul>
+        <a href="#" class="btn-outline price-btn">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 5 : FAQ
+══════════════════════════════════════════ -->
+<section id="svc-faq">
+  <div class="container">
+    <div class="svc-faq-grid">
+      <div class="svc-faq-left reveal-left">
+        <span class="section-tag"><i class="fas fa-circle-question"></i> FAQs</span>
+        <h2 class="section-title">Common <span>Questions</span></h2>
+        <p class="section-sub">Can't find what you're looking for? Reach out and our advisors will personally walk you through it.</p>
+        <a href="./contact.html" class="btn-gold" style="margin-top:24px;">Contact Us <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-faq-right reveal-right">
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Is Stackly a SEBI registered advisor?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a"><p>Yes. Stackly Advisory is a fully SEBI-registered Investment Advisor (INA000XXXXX), and we follow strict fiduciary standards in every recommendation we make.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Do you earn commissions from fund houses?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a"><p>No. We are a fee-only advisory. We never accept trail commissions or kickbacks from AMCs — our only incentive is your portfolio's performance.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>What is the minimum investment to get started?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a"><p>You can start a SIP with as little as ₹1,000/month. Our Starter plan is designed specifically for first-time investors building healthy habits.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>Can I switch plans or cancel anytime?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a"><p>Absolutely. There are no lock-in contracts on our advisory fee. You can upgrade, downgrade, or cancel your plan at any time from your dashboard.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>How often will I hear from my advisor?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a"><p>Depending on your plan, you'll have scheduled monthly or quarterly reviews, plus on-demand access via call, email, or our investor dashboard.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICE-SECTION 6 : CTA BANNER
+══════════════════════════════════════════ -->
+<section id="svc-cta">
+  <div class="svc-cta-bg"></div>
+  <div class="svc-cta-ring"></div>
+  <div class="svc-cta-ring"></div>
+  <div class="svc-cta-ring"></div>
+  <div class="container">
+    <div class="svc-cta-inner reveal">
+      <span class="section-tag" style="justify-content:center;display:flex;"><i class="fas fa-rocket"></i> Start Today</span>
+      <h2 class="section-title">Let's Build Your <span>Wealth Plan</span></h2>
+      <p class="section-sub">Book a free 30-minute advisory call. No commitments, no jargon — just clear, personalised guidance.</p>
+      <div class="svc-cta-btns">
+        <a href="./contact.html" class="btn-gold">Book Free Consultation <i class="fas fa-arrow-right"></i></a>
+        <a href="tel:+918000000000" class="btn-outline"><i class="fas fa-phone"></i> +91 80000 00000</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="./home.html" class="logo" style="font-size:1.3rem;"><i class="fas fa-chart-line"></i> Stackly</a>
+        <p>Stackly Advisory is a SEBI-registered investment advisor (INA000XXXXX) committed to unbiased, research-backed mutual fund guidance for every investor.</p>
+        <div class="footer-social">
+          <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
+          <a href="./404.html"><i class="fab fa-twitter"></i></a>
+          <a href="./404.html"><i class="fab fa-youtube"></i></a>
+          <a href="./404.html"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="./404.html">Portfolio Advisory</a></li>
+          <li><a href="./404.html">SIP Planning</a></li>
+          <li><a href="./404.html">Retirement Planning</a></li>
+          <li><a href="./404.html">Tax Saving ELSS</a></li>
+          <li><a href="./404.html">Corporate Treasury</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./serivce.html">Service</a></li>
+          <li><a href="./blog.html">blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="./404.html">SEBI Registration</a></li>
+          <li><a href="./404.html">Disclaimer</a></li>
+          <li><a href="./404.html">Privacy Policy</a></li>
+          <li><a href="./404.html">Terms of Service</a></li>
+          <li><a href="./404.html">Grievance Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Stackly Advisory Pvt. Ltd.</span> All rights reserved. Mutual fund investments are subject to market risks.</p>
+      <div class="footer-tags">
+        <a href="./404.html">Sitemap</a>
+        <a href="./404.html">Accessibility</a>
+        <a href="./404.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+  /* ── NAVBAR SCROLL ──────────────────── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ── SCROLL REVEAL ──────────────────── */
+  const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* ── FAQ ACCORDION ──────────────────── */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── REDUCE MOTION ──────────────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.svc-cta-ring').forEach(el => {
+      el.style.animation = 'none';
+    });
+  }
+</script>
+<script src="./nav.js"></script>
+</body>
+</html>

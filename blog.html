@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | Stackly Mutual Fund Advisory</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="./home.html" class="logo"><i class="fas fa-chart-line"></i> Stackly</a>
+    <ul class="nav-links">
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./blog.html">blog</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <a href="./login.html" class="btn-gold nav-cta" style="padding:11px 24px;font-size:.86rem;">Login <i class="fas fa-arrow-right"></i></a>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./home.html">Home</a>
+<a href="./about.html">About</a>
+<a href="./service.html">Services</a>
+<a href="./blog.html">blog</a>
+<a href="./contact.html">Contact</a>
+  <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
+</div>
+
+<div class="sections">
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 1 : PAGE HERO
+══════════════════════════════════════════ -->
+<section id="blg-hero">
+  <div class="blg-hero-bg"></div>
+  <div class="blg-hero-overlay"></div>
+  <div class="container">
+    <div class="blg-hero-inner reveal">
+      <div class="breadcrumb">
+        <a href="./home.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Blog</span>
+      </div>
+      <span class="section-tag"><i class="fas fa-feather-alt"></i> Stackly Insights</span>
+      <h1 class="blg-hero-title">The <span>Investment</span> Journal</h1>
+      <p class="blg-hero-sub">Market commentary, fund analysis, and practical money lessons from our research desk — written for investors who want clarity, not jargon.</p>
+      <div class="blg-hero-stats">
+        <div class="blg-stat"><div class="blg-stat-num">180+</div><div class="blg-stat-lbl">Articles Published</div></div>
+        <div class="blg-stat"><div class="blg-stat-num">12K+</div><div class="blg-stat-lbl">Newsletter Readers</div></div>
+        <div class="blg-stat"><div class="blg-stat-num">Weekly</div><div class="blg-stat-lbl">Market Digest</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 2 : FEATURED ARTICLE
+══════════════════════════════════════════ -->
+<section id="blg-featured">
+  <div class="container">
+    <div class="blg-feat-grid">
+      <div class="blg-feat-img-stack reveal-left">
+        <img class="bfi-main" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=80" alt="Featured article"/>
+        <img class="bfi-accent" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&auto=format&fit=crop&q=80" alt="Market chart"/>
+        <div class="blg-feat-badge"><span class="bfb-num">7</span><span class="bfb-lbl">Min<br>Read</span></div>
+      </div>
+      <div class="reveal-right">
+        <span class="section-tag"><i class="fas fa-star"></i> Editor's Pick</span>
+        <h2 class="section-title">Why Asset Allocation Matters More Than <span>Stock Picking</span> in 2026</h2>
+        <p class="section-sub">A disciplined mix of equity, debt, and gold has historically outperformed concentrated bets over a full market cycle. We break down the data behind why allocation — not timing — drives long-term portfolio outcomes.</p>
+        <div class="blg-feat-meta">
+          <span><i class="far fa-user"></i> Ananya Rao</span>
+          <span><i class="far fa-calendar"></i> Jun 24, 2026</span>
+          <span><i class="far fa-folder"></i> Market Outlook</span>
+        </div>
+        <div class="blg-feat-features">
+          <div class="bff-item">
+            <div class="bff-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="bff-text"><h4>Data-Backed</h4><p>Built on 15 years of market cycle data.</p></div>
+          </div>
+          <div class="bff-item">
+            <div class="bff-icon"><i class="fas fa-scale-balanced"></i></div>
+            <div class="bff-text"><h4>Unbiased</h4><p>No fund house sponsorships, ever.</p></div>
+          </div>
+        </div>
+        <a href="./404.html" class="btn-gold" style="margin-top:28px;">Read Full Article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 3 : BROWSE CATEGORIES
+══════════════════════════════════════════ -->
+<section id="blg-categories">
+  <div class="container">
+    <div class="blg-cat-header reveal">
+      <span class="section-tag"><i class="fas fa-compass"></i> Browse By Topic</span>
+      <h2 class="section-title">Explore <span>Categories</span></h2>
+      <p class="section-sub">Jump straight to the topics that matter most for your financial journey.</p>
+    </div>
+    <div class="blg-cat-grid">
+      <a href="./404.html" class="blg-cat-card reveal">
+        <div class="blg-cat-icon"><i class="fas fa-chart-pie"></i></div>
+        <h3>Mutual Funds</h3>
+        <span>42 Articles</span>
+      </a>
+      <a href="./404.html" class="blg-cat-card reveal">
+        <div class="blg-cat-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <h3>Tax Planning</h3>
+        <span>28 Articles</span>
+      </a>
+      <a href="./404.html" class="blg-cat-card reveal">
+        <div class="blg-cat-icon"><i class="fas fa-umbrella-beach"></i></div>
+        <h3>Retirement</h3>
+        <span>19 Articles</span>
+      </a>
+      <a href="./404.html" class="blg-cat-card reveal">
+        <div class="blg-cat-icon"><i class="fas fa-newspaper"></i></div>
+        <h3>Market News</h3>
+        <span>35 Articles</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 4 : LATEST ARTICLES
+══════════════════════════════════════════ -->
+<section id="blg-posts">
+  <div class="container">
+    <div class="blg-posts-header reveal">
+      <span class="section-tag"><i class="fas fa-pen-nib"></i> Latest Articles</span>
+      <h2 class="section-title">Fresh From The <span>Desk</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Hand-picked reads from our advisory team, updated every week.</p>
+    </div>
+
+    <div class="blg-filters reveal">
+      <button class="blg-filter-btn active">All</button>
+      <button class="blg-filter-btn">Mutual Funds</button>
+      <button class="blg-filter-btn">Tax Planning</button>
+      <button class="blg-filter-btn">Retirement</button>
+      <button class="blg-filter-btn">Market News</button>
+    </div>
+
+    <div class="blg-posts-grid">
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&auto=format&fit=crop&q=80" alt="SIP investing"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Mutual Funds</span>
+          <h3>SIP vs Lump Sum: Which Wins in a Volatile Market?</h3>
+          <p>We compare both strategies across three market cycles to see which approach actually protects your downside.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Vikram Shah</span>
+            <span><i class="far fa-calendar"></i> Jun 18, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=500&auto=format&fit=crop&q=80" alt="Tax saving"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Tax Planning</span>
+          <h3>5 ELSS Mistakes That Cost Investors Lakhs Every Year</h3>
+          <p>From lock-in confusion to chasing past returns, here are the recurring errors we see in client portfolios.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Priya Menon</span>
+            <span><i class="far fa-calendar"></i> Jun 12, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=500&auto=format&fit=crop&q=80" alt="Retirement planning"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Retirement</span>
+          <h3>How Much Should You Really Save for Retirement by 40?</h3>
+          <p>A simple framework using your current expenses and inflation assumptions to set a realistic retirement number.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Ananya Rao</span>
+            <span><i class="far fa-calendar"></i> Jun 05, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&auto=format&fit=crop&q=80" alt="Market news"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Market News</span>
+          <h3>RBI Policy Decoded: What It Means for Your Debt Funds</h3>
+          <p>Breaking down the latest rate decision and its likely impact on short and long-duration debt schemes.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Vikram Shah</span>
+            <span><i class="far fa-calendar"></i> May 29, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500&auto=format&fit=crop&q=80" alt="Gold investing"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Mutual Funds</span>
+          <h3>Gold ETFs vs Physical Gold: The Real Cost Comparison</h3>
+          <p>Storage, purity, and liquidity — we run the numbers on which form of gold actually serves your portfolio.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Priya Menon</span>
+            <span><i class="far fa-calendar"></i> May 21, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blg-post-card reveal">
+        <div class="blg-post-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=500&auto=format&fit=crop&q=80" alt="Financial planning"/></div>
+        <div class="blg-post-body">
+          <span class="blg-post-cat">Retirement</span>
+          <h3>NPS or PPF: Picking the Right Long-Term Debt Instrument</h3>
+          <p>A side-by-side look at returns, lock-in, and tax treatment to help you choose the right fit for your goals.</p>
+          <div class="blg-post-meta">
+            <span><i class="far fa-user"></i> Ananya Rao</span>
+            <span><i class="far fa-calendar"></i> May 14, 2026</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 5 : CONTRIBUTORS
+══════════════════════════════════════════ -->
+<section id="blg-authors">
+  <div class="container">
+    <div class="blg-authors-header reveal">
+      <span class="section-tag"><i class="fas fa-people-group"></i> Contributors</span>
+      <h2 class="section-title">Meet the <span>Writers Behind</span> Stackly Insights</h2>
+      <p class="section-sub" style="margin:0 auto;">Our research team writes everything you read — no ghostwriters, no AI-generated filler.</p>
+    </div>
+    <div class="blg-authors-grid">
+      <div class="blg-author-card reveal">
+        <div class="blg-author-img-wrap">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80" alt="Ananya Rao"/>
+          <div class="blg-author-overlay">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <h3>Ananya Rao</h3>
+        <div class="role">Market Outlook Lead</div>
+        <p>Covers asset allocation, macro trends, and quarterly market reviews.</p>
+      </div>
+      <div class="blg-author-card reveal">
+        <div class="blg-author-img-wrap">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80" alt="Vikram Shah"/>
+          <div class="blg-author-overlay">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <h3>Vikram Shah</h3>
+        <div class="role">Mutual Fund Analyst</div>
+        <p>Writes on SIP strategy, fund comparisons, and debt market commentary.</p>
+      </div>
+      <div class="blg-author-card reveal">
+        <div class="blg-author-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80" alt="Priya Menon"/>
+          <div class="blg-author-overlay">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <h3>Priya Menon</h3>
+        <div class="role">Tax & Planning Editor</div>
+        <p>Specialises in tax-saving strategies and year-end planning checklists.</p>
+      </div>
+      <div class="blg-author-card reveal">
+        <div class="blg-author-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80" alt="Rahul Nair"/>
+          <div class="blg-author-overlay">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <h3>Rahul Nair</h3>
+        <div class="role">Retirement Columnist</div>
+        <p>Breaks down retirement corpus building and goal-based investing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG-SECTION 6 : NEWSLETTER CTA
+══════════════════════════════════════════ -->
+<section id="blg-cta">
+  <div class="blg-cta-bg"></div>
+  <div class="blg-cta-ring"></div>
+  <div class="blg-cta-ring"></div>
+  <div class="blg-cta-ring"></div>
+  <div class="container">
+    <div class="blg-cta-inner reveal">
+      <span class="section-tag" style="justify-content:center;display:flex;"><i class="fas fa-envelope-open-text"></i> Stay In The Loop</span>
+      <h2 class="section-title">Get Weekly <span>Market Insights</span></h2>
+      <p class="section-sub">Join 12,000+ investors who get our research digest every Friday — straight to their inbox, no spam.</p>
+      <form class="blg-cta-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="./home.html" class="logo" style="font-size:1.3rem;"><i class="fas fa-chart-line"></i> Stackly</a>
+        <p>Stackly Advisory is a SEBI-registered investment advisor (INA000XXXXX) committed to unbiased, research-backed mutual fund guidance for every investor.</p>
+        <div class="footer-social">
+          <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
+          <a href="./404.html"><i class="fab fa-twitter"></i></a>
+          <a href="./404.html"><i class="fab fa-youtube"></i></a>
+          <a href="./404.html"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="./404.html">Portfolio Advisory</a></li>
+          <li><a href="./404.html">SIP Planning</a></li>
+          <li><a href="./404.html">Retirement Planning</a></li>
+          <li><a href="./404.html">Tax Saving ELSS</a></li>
+          <li><a href="./404.html">Corporate Treasury</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./serivce.html">Service</a></li>
+          <li><a href="./blog.html">blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="./404.html">SEBI Registration</a></li>
+          <li><a href="./404.html">Disclaimer</a></li>
+          <li><a href="./404.html">Privacy Policy</a></li>
+          <li><a href="./404.html">Terms of Service</a></li>
+          <li><a href="./404.html">Grievance Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Stackly Advisory Pvt. Ltd.</span> All rights reserved. Mutual fund investments are subject to market risks.</p>
+      <div class="footer-tags">
+        <a href="./404.html">Sitemap</a>
+        <a href="./404.html">Accessibility</a>
+        <a href="./404.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── HAMBURGER ──────────────────────── */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link').forEach(l => {
+    l.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── NAVBAR SCROLL ──────────────────── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ── SCROLL REVEAL ──────────────────── */
+  const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  /* ── BLOG FILTER BUTTONS ─────────────── */
+  document.querySelectorAll('.blg-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.blg-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  /* ── REDUCE MOTION ──────────────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.blg-cta-ring').forEach(el => {
+      el.style.animation = 'none';
+    });
+  }
+</script>
+</body>
+</html>
