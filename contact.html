@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stackly contact</title>
+  <title>Contact Stackly | Mutual Fund Advisory</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body>
 
@@ -31,240 +33,248 @@
 <!-- ══ MOBILE MENU ══ -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="./home.html">Home</a>
-  <a href="./about.html">About</a>
-  <a href="./service.html">Services</a>
-  <a href="./blog.html">blog</a>
-  <a href="./contact.html">Contact</a>
+<a href="./about.html">About</a>
+<a href="./service.html">Services</a>
+<a href="./blog.html">blog</a>
+<a href="./contact.html">Contact</a>
   <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
 </div>
 
 <div class="sections">
 
-  <!-- ══ 1. PAGE HERO ══ -->
-  <section id="page-hero" class="page-hero">
-    <div class="container page-hero-inner reveal">
-      <span class="section-tag"><i class="fas fa-headset"></i> We'd Love to Hear From You</span>
-      <h1 class="section-title">Let's Talk <span>Investments</span></h1>
-      <p class="section-sub" style="margin:18px auto 0;">Whether you have a question about a fund, need a portfolio review, or just want to start investing — our advisory team is one message away.</p>
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 1 : PAGE HERO
+══════════════════════════════════════════ -->
+<section id="cnt-hero">
+  <div class="cnt-hero-bg"></div>
+  <div class="cnt-hero-overlay"></div>
+  <div class="container">
+    <div class="cnt-hero-inner reveal">
       <div class="breadcrumb">
         <a href="./home.html">Home</a>
         <i class="fas fa-chevron-right"></i>
-        <span style="color:var(--gold);">Contact</span>
+        <span>Contact</span>
+      </div>
+      <span class="section-tag"><i class="fas fa-headset"></i> We'd Love to Hear From You</span>
+      <h1 class="cnt-hero-title">Let's Talk <span>Investments</span></h1>
+      <p class="cnt-hero-sub">Whether you have a question about a fund, need a portfolio review, or just want to start investing — our advisory team is one message away.</p>
+      <div class="cnt-hero-stats">
+        <div class="cnt-stat"><div class="cnt-stat-num">24 Hrs</div><div class="cnt-stat-lbl">Average Response</div></div>
+        <div class="cnt-stat"><div class="cnt-stat-num">3</div><div class="cnt-stat-lbl">City Offices</div></div>
+        <div class="cnt-stat"><div class="cnt-stat-num">Free</div><div class="cnt-stat-lbl">First Consultation</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══ 2. CONTACT INFO CARDS ══ -->
-  <section id="contact-info">
-    <div class="container">
-      <div class="info-grid">
-        <div class="info-card reveal">
-          <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-          <h4>Call Us</h4>
-          <p>+91 98765 43210<br>Mon - Sat, 9am - 7pm</p>
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 2 : GET IN TOUCH
+══════════════════════════════════════════ -->
+<section id="cnt-touch">
+  <div class="container">
+    <div class="cnt-touch-grid">
+      <div class="cnt-touch-img-stack reveal-left">
+        <img class="cti-main" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80" alt="Advisory team"/>
+        <img class="cti-accent" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&auto=format&fit=crop&q=80" alt="Consultation"/>
+        <div class="cnt-touch-badge"><span class="ctb-num">20</span><span class="ctb-lbl">Min Free<br>Review</span></div>
+      </div>
+      <div class="reveal-right">
+        <span class="section-tag"><i class="fas fa-comments"></i> Get In Touch</span>
+        <h2 class="section-title">Speak To a <span>SEBI-Registered</span> Advisor</h2>
+        <p class="section-sub">No call centres, no scripts — just a real advisor who reviews your situation and gives honest, personalised guidance with zero obligation to invest.</p>
+        <div class="cnt-touch-features">
+          <div class="ctf-item">
+            <div class="ctf-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="ctf-text"><h4>Call Us</h4><p>+91 98765 43210, Mon–Sat 9am–7pm</p></div>
+          </div>
+          <div class="ctf-item">
+            <div class="ctf-icon"><i class="fas fa-envelope"></i></div>
+            <div class="ctf-text"><h4>Email Us</h4><p>support@stackly.in</p></div>
+          </div>
+          <div class="ctf-item">
+            <div class="ctf-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ctf-text"><h4>Head Office</h4><p>Anna Salai, Chennai 600002</p></div>
+          </div>
+          <div class="ctf-item">
+            <div class="ctf-icon"><i class="fas fa-comments"></i></div>
+            <div class="ctf-text"><h4>Live Chat</h4><p>Available during business hours</p></div>
+          </div>
         </div>
-        <div class="info-card reveal">
-          <div class="info-icon"><i class="fas fa-envelope"></i></div>
-          <h4>Email Us</h4>
-          <p>support@stackly.in<br>We reply within 24 hours</p>
+        <a href="tel:+919876543210" class="btn-gold" style="margin-top:28px;">Call Now <i class="fas fa-phone-alt"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 3 : CONTACT METHODS
+══════════════════════════════════════════ -->
+<section id="cnt-info">
+  <div class="container">
+    <div class="cnt-info-header reveal">
+      <span class="section-tag"><i class="fas fa-route"></i> Ways To Reach Us</span>
+      <h2 class="section-title">Choose What's <span>Easiest For You</span></h2>
+      <p class="section-sub">Pick the channel that works best — we respond just as quickly across all of them.</p>
+    </div>
+    <div class="cnt-info-grid">
+      <div class="cnt-info-card reveal">
+        <div class="cnt-info-icon"><i class="fas fa-phone-alt"></i></div>
+        <h3>Call Us</h3>
+        <p>+91 98765 43210<br>Mon - Sat, 9am - 7pm</p>
+      </div>
+      <div class="cnt-info-card reveal">
+        <div class="cnt-info-icon"><i class="fas fa-envelope"></i></div>
+        <h3>Email Us</h3>
+        <p>support@stackly.in<br>We reply within 24 hours</p>
+      </div>
+      <div class="cnt-info-card reveal">
+        <div class="cnt-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <h3>Visit Us</h3>
+        <p>4th Floor, Prestige Towers<br>Anna Salai, Chennai 600002</p>
+      </div>
+      <div class="cnt-info-card reveal">
+        <div class="cnt-info-icon"><i class="fas fa-comments"></i></div>
+        <h3>Live Chat</h3>
+        <p>Chat with an advisor<br>Available during business hours</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 4 : CONTACT FORM
+══════════════════════════════════════════ -->
+<section id="cnt-form-section">
+  <div class="container">
+    <div class="cnt-form-header reveal">
+      <span class="section-tag"><i class="fas fa-paper-plane"></i> Send a Message</span>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Fill out the form below and an advisor will get back to you within 24 hours.</p>
+    </div>
+
+    <div class="cnt-form-card reveal">
+      <div class="cnt-form-success" id="formSuccess">
+        <i class="fas fa-check-circle"></i>
+        <span>Thank you! Your message has been sent — we'll get back to you shortly.</span>
+      </div>
+
+      <form id="contactForm" novalidate>
+        <div class="cnt-form-row">
+          <div class="cnt-form-group" id="nameGroup">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Hari Krishnan" autocomplete="off">
+            <div class="cnt-error-msg"><i class="fas fa-circle-exclamation"></i> <span>Name should contain letters only, no numbers.</span></div>
+          </div>
+          <div class="cnt-form-group" id="phoneGroup">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" autocomplete="off">
+            <div class="cnt-error-msg"><i class="fas fa-circle-exclamation"></i> <span>Enter a valid 10-digit phone number.</span></div>
+          </div>
         </div>
-        <div class="info-card reveal">
-          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <h4>Visit Us</h4>
-          <p>4th Floor, Prestige Towers<br>Anna Salai, Chennai 600002</p>
+
+        <div class="cnt-form-group" id="emailGroup">
+          <label for="email">Email Address</label>
+          <input type="text" id="email" name="email" placeholder="you@example.com" autocomplete="off">
+          <div class="cnt-error-msg"><i class="fas fa-circle-exclamation"></i> <span>Enter a valid email ending in .com, .in, .org etc.</span></div>
         </div>
-        <div class="info-card reveal">
-          <div class="info-icon"><i class="fas fa-comments"></i></div>
-          <h4>Live Chat</h4>
-          <p>Chat with an advisor<br>Available during business hours</p>
+
+        <div class="cnt-form-group" id="subjectGroup">
+          <label for="subject">I'm Interested In</label>
+          <select id="subject" name="subject">
+            <option value="">Select a topic</option>
+            <option value="portfolio">Portfolio Advisory</option>
+            <option value="sip">SIP Planning</option>
+            <option value="retirement">Retirement Planning</option>
+            <option value="tax">Tax Saving ELSS</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="cnt-error-msg"><i class="fas fa-circle-exclamation"></i> <span>Please select a topic.</span></div>
+        </div>
+
+        <div class="cnt-form-group" id="messageGroup">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a bit about your investment goals..."></textarea>
+          <div class="cnt-error-msg"><i class="fas fa-circle-exclamation"></i> <span>Message should be at least 10 characters.</span></div>
+        </div>
+
+        <button type="submit" class="btn-gold">Send Message <i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 5 : FAQ
+══════════════════════════════════════════ -->
+<section id="cnt-faq">
+  <div class="container">
+    <div class="cnt-faq-header reveal">
+      <span class="section-tag"><i class="fas fa-circle-question"></i> Common Questions</span>
+      <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Quick answers before you reach out — if you don't find what you need, just message us.</p>
+    </div>
+
+    <div class="cnt-faq-list">
+      <div class="cnt-faq-item reveal">
+        <div class="cnt-faq-question">
+          <h4>Is the initial consultation really free?</h4>
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="cnt-faq-answer">
+          <p>Yes. Your first 20-minute portfolio review with one of our SEBI-registered advisors is completely free, with no obligation to invest.</p>
+        </div>
+      </div>
+      <div class="cnt-faq-item reveal">
+        <div class="cnt-faq-question">
+          <h4>How quickly will I hear back after submitting the form?</h4>
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="cnt-faq-answer">
+          <p>Our team typically responds within 24 business hours. For urgent queries, please call our support line directly.</p>
+        </div>
+      </div>
+      <div class="cnt-faq-item reveal">
+        <div class="cnt-faq-question">
+          <h4>Do you charge a fee for fund recommendations?</h4>
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="cnt-faq-answer">
+          <p>We operate on a transparent fee-only advisory model. Full details are shared upfront before any engagement begins.</p>
+        </div>
+      </div>
+      <div class="cnt-faq-item reveal">
+        <div class="cnt-faq-question">
+          <h4>Can I switch advisors if I'm not satisfied?</h4>
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="cnt-faq-answer">
+          <p>Absolutely. Just reach out to our support team and we'll reassign your account to another advisor at no extra cost.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ══ 3. CONTACT FORM ══ -->
-  <section id="contact-form-section">
-    <div class="container">
-      <div class="contact-grid">
-
-        <div class="contact-img-side reveal-left">
-          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=80" alt="Advisory team">
-          <div class="contact-img-overlay">
-            <div class="cio-content">
-              <h4>Speak to a SEBI-Registered Advisor</h4>
-              <p>Personalised guidance, zero obligation. Book a free 20-minute portfolio review.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form-card reveal-right">
-          <span class="section-tag">Send a Message</span>
-          <h2 class="section-title" style="font-size:1.8rem;margin-bottom:24px;">Get In <span>Touch</span></h2>
-
-          <div class="form-success" id="formSuccess">
-            <i class="fas fa-check-circle"></i>
-            <span>Thank you! Your message has been sent — we'll get back to you shortly.</span>
-          </div>
-
-          <form id="contactForm" novalidate>
-            <div class="form-row">
-              <div class="form-group" id="nameGroup">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="e.g. Hari Krishnan" autocomplete="off">
-                <div class="error-msg"><i class="fas fa-circle-exclamation"></i> <span>Name should contain letters only, no numbers.</span></div>
-              </div>
-              <div class="form-group" id="phoneGroup">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" autocomplete="off">
-                <div class="error-msg"><i class="fas fa-circle-exclamation"></i> <span>Enter a valid 10-digit phone number.</span></div>
-              </div>
-            </div>
-
-            <div class="form-group" id="emailGroup">
-              <label for="email">Email Address</label>
-              <input type="text" id="email" name="email" placeholder="you@example.com" autocomplete="off">
-              <div class="error-msg"><i class="fas fa-circle-exclamation"></i> <span>Enter a valid email ending in .com, .in, .org etc.</span></div>
-            </div>
-
-            <div class="form-group" id="subjectGroup">
-              <label for="subject">I'm Interested In</label>
-              <select id="subject" name="subject">
-                <option value="">Select a topic</option>
-                <option value="portfolio">Portfolio Advisory</option>
-                <option value="sip">SIP Planning</option>
-                <option value="retirement">Retirement Planning</option>
-                <option value="tax">Tax Saving ELSS</option>
-                <option value="other">Other</option>
-              </select>
-              <div class="error-msg"><i class="fas fa-circle-exclamation"></i> <span>Please select a topic.</span></div>
-            </div>
-
-            <div class="form-group" id="messageGroup">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell us a bit about your investment goals..."></textarea>
-              <div class="error-msg"><i class="fas fa-circle-exclamation"></i> <span>Message should be at least 10 characters.</span></div>
-            </div>
-
-            <button type="submit" class="btn-gold">Send Message <i class="fas fa-paper-plane"></i></button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 4. FAQ ══ -->
-  <section id="contact-faq">
-    <div class="container">
-      <div class="services-header reveal">
-        <span class="section-tag">Common Questions</span>
-        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
-        <p class="section-sub">Quick answers before you reach out — if you don't find what you need, just message us.</p>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item reveal">
-          <div class="faq-question">
-            <h4>Is the initial consultation really free?</h4>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. Your first 20-minute portfolio review with one of our SEBI-registered advisors is completely free, with no obligation to invest.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-question">
-            <h4>How quickly will I hear back after submitting the form?</h4>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Our team typically responds within 24 business hours. For urgent queries, please call our support line directly.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-question">
-            <h4>Do you charge a fee for fund recommendations?</h4>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>We operate on a transparent fee-only advisory model. Full details are shared upfront before any engagement begins.</p>
-          </div>
-        </div>
-        <div class="faq-item reveal">
-          <div class="faq-question">
-            <h4>Can I switch advisors if I'm not satisfied?</h4>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Absolutely. Just reach out to our support team and we'll reassign your account to another advisor at no extra cost.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 5. OFFICE LOCATIONS ══ -->
-  <section id="offices">
-    <div class="container">
-      <div class="services-header reveal">
-        <span class="section-tag">Our Presence</span>
-        <h2 class="section-title">Visit An <span>Office</span> Near You</h2>
-        <p class="section-sub">Drop by for an in-person consultation at any of our branch locations.</p>
-      </div>
-      <div class="office-grid">
-        <div class="office-card reveal">
-          <div class="office-img">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&auto=format&fit=crop&q=80" alt="Chennai office">
-          </div>
-          <div class="office-body">
-            <span class="office-tag">Head Office</span>
-            <h4>Chennai</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 4th Floor, Prestige Towers, Anna Salai</p>
-            <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
-          </div>
-        </div>
-        <div class="office-card reveal">
-          <div class="office-img">
-            <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=500&auto=format&fit=crop&q=80" alt="Bangalore office">
-          </div>
-          <div class="office-body">
-            <span class="office-tag">Branch</span>
-            <h4>Bangalore</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 2nd Floor, Brigade Road, MG Road</p>
-            <p><i class="fas fa-phone-alt"></i> +91 98765 11223</p>
-          </div>
-        </div>
-        <div class="office-card reveal">
-          <div class="office-img">
-            <img src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?w=500&auto=format&fit=crop&q=80" alt="Mumbai office">
-          </div>
-          <div class="office-body">
-            <span class="office-tag">Branch</span>
-            <h4>Mumbai</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 8th Floor, Nariman Point</p>
-            <p><i class="fas fa-phone-alt"></i> +91 98765 99887</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ 6. CTA BANNER ══ -->
-  <section id="cta-banner">
-    <div class="cta-bg"></div>
-    <div class="cta-ring"></div>
-    <div class="cta-ring"></div>
-    <div class="cta-ring"></div>
-    <div class="container cta-inner reveal">
-      <span class="section-tag">Still Have Questions?</span>
+<!-- ══════════════════════════════════════════
+     CONTACT-SECTION 6 : CTA BANNER
+══════════════════════════════════════════ -->
+<section id="cnt-cta">
+  <div class="cnt-cta-bg"></div>
+  <div class="cnt-cta-ring"></div>
+  <div class="cnt-cta-ring"></div>
+  <div class="cnt-cta-ring"></div>
+  <div class="container">
+    <div class="cnt-cta-inner reveal">
+      <span class="section-tag" style="justify-content:center;display:flex;"><i class="fas fa-handshake"></i> Still Have Questions?</span>
       <h2 class="section-title">We're Just A <span>Message</span> Away</h2>
       <p class="section-sub">Our advisory desk is ready to help you make confident, informed investment decisions.</p>
-      <div class="cta-btns">
+      <div class="cnt-cta-btns">
         <a href="tel:+919876543210" class="btn-gold">Call Now <i class="fas fa-phone-alt"></i></a>
         <a href="./service.html" class="btn-outline">Explore Services</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 </div>
 <!-- ══ FOOTER ══ -->
@@ -358,14 +368,14 @@
   revealEls.forEach(el => io.observe(el));
 
   /* ── FAQ ACCORDION ───────────────────── */
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
+  document.querySelectorAll('.cnt-faq-item').forEach(item => {
+    const question = item.querySelector('.cnt-faq-question');
+    const answer = item.querySelector('.cnt-faq-answer');
     question.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => {
+      document.querySelectorAll('.cnt-faq-item').forEach(i => {
         i.classList.remove('open');
-        i.querySelector('.faq-answer').style.maxHeight = null;
+        i.querySelector('.cnt-faq-answer').style.maxHeight = null;
       });
       if (!isOpen) {
         item.classList.add('open');
@@ -377,7 +387,7 @@
   /* ══════════════════════════════════════════
        CONTACT FORM VALIDATION
        - Name: letters & spaces only, no numbers
-       - Phone: exactly 10 digits
+       - Phone: exactly 10 digits, starts 6-9
        - Email: must end with a valid TLD (.com, .in, .org, .net, .co, .edu, .gov etc.)
        - Subject: required
        - Message: minimum 10 characters
@@ -389,7 +399,6 @@
     fullName: {
       input: document.getElementById('fullName'),
       group: document.getElementById('nameGroup'),
-      // Letters and spaces only — no numbers or symbols allowed
       validate: (val) => /^[A-Za-z\s]{2,50}$/.test(val.trim())
     },
     phone: {
@@ -400,7 +409,6 @@
     email: {
       input: document.getElementById('email'),
       group: document.getElementById('emailGroup'),
-      // Must be a valid email AND end with a recognised TLD like .com, .in, .org, .net, .co, .edu, .gov, .io etc.
       validate: (val) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|org|net|co|edu|gov|io|co\.in|info|biz)$/i.test(val.trim())
     },
     subject: {
@@ -438,7 +446,6 @@
     group.classList.toggle('error', !isValid);
   }
 
-  // Live validation as the user types/selects
   Object.keys(fields).forEach(key => {
     const { input } = fields[key];
     const eventType = (input.tagName === 'SELECT') ? 'change' : 'input';
@@ -464,15 +471,13 @@
 
     if (!allValid) {
       formSuccess.classList.remove('show');
-      // Scroll to first error field
-      const firstError = form.querySelector('.form-group.error');
+      const firstError = form.querySelector('.cnt-form-group.error');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       return;
     }
 
-    // All valid — simulate successful submission
     formSuccess.classList.add('show');
     form.reset();
     Object.keys(fields).forEach(key => fields[key].group.classList.remove('error'));
@@ -481,7 +486,7 @@
 
   /* ── REDUCE MOTION ──────────────────── */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.ticker-track,.testi-track,.gold-line,.hero-card-float,.cta-ring').forEach(el => {
+    document.querySelectorAll('.cnt-cta-ring').forEach(el => {
       el.style.animation = 'none';
     });
   }

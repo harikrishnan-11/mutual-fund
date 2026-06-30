@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stackly Advisory | Premium Mutual Fund Solutions</title>
+  <title>Login | Stackly Mutual Fund Advisory</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body>
 
@@ -21,7 +23,7 @@
       <li><a href="./blog.html">blog</a></li>
       <li><a href="./contact.html">Contact</a></li>
     </ul>
-    <a href="./login.html" class="btn-gold nav-cta" style="padding:11px 24px;font-size:.86rem;">Login <i class="fas fa-arrow-right"></i></a>
+    <a href="./signup.html" class="btn-gold nav-cta" style="padding:11px 24px;font-size:.86rem;">Sign Up <i class="fas fa-arrow-right"></i></a>
     <div class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </div>
@@ -31,17 +33,135 @@
 <!-- ══ MOBILE MENU ══ -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="./home.html">Home</a>
-<a href="./about.html">About</a>
-<a href="./service.html">Services</a>
-<a href="./blog.html">blog</a>
-<a href="./contact.html">Contact</a>
-  <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
+  <a href="./about.html">About</a>
+  <a href="./service.html">Services</a>
+  <a href="./blog.html">blog</a>
+  <a href="./contact.html">Contact</a>
+  <a href="./signup.html" class="btn-gold mob-link" style="margin-top:12px;">Sign Up</a>
 </div>
 
 <div class="sections">
 
-    
+<!-- ══════════════════════════════════════════
+     LOGIN SECTION
+══════════════════════════════════════════ -->
+<section id="auth-section">
+  <div class="auth-bg"></div>
+  <div class="auth-overlay"></div>
+  <div class="auth-ring"></div>
+  <div class="auth-ring"></div>
+  <div class="auth-ring"></div>
+
+  <div class="container">
+    <div class="auth-wrap">
+      <div class="auth-grid">
+
+        <!-- LEFT INFO PANEL -->
+        <div class="auth-info reveal-left">
+          <div class="breadcrumb">
+            <a href="./home.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Login</span>
+          </div>
+          <span class="section-tag"><i class="fas fa-right-to-bracket"></i> Welcome Back</span>
+          <h1 class="auth-info-title">Sign In To <span>Your Account</span></h1>
+          <p class="auth-info-sub">Access your portfolio dashboard, track performance, and stay connected with your dedicated advisor — all in one place.</p>
+
+          <div class="auth-feature-list">
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="auth-feature-text"><h4>Live Portfolio</h4><p>Real-time view of your investments</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-bell"></i></div>
+              <div class="auth-feature-text"><h4>Smart Alerts</h4><p>Stay informed on market moves</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-file-invoice"></i></div>
+              <div class="auth-feature-text"><h4>Statements On Demand</h4><p>Download reports anytime</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-headset"></i></div>
+              <div class="auth-feature-text"><h4>24/7 Support Access</h4><p>Reach your advisor instantly</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOGIN FORM CARD -->
+        <div class="auth-card reveal-right">
+          <div class="auth-card-head">
+            <div class="auth-card-icon"><i class="fas fa-right-to-bracket"></i></div>
+            <h2>Login</h2>
+            <p>Select your role and enter your credentials.</p>
+          </div>
+
+          <div class="auth-form-success" id="signupNotice" style="display:none;">
+            <i class="fas fa-check-circle"></i>
+            <span>Account created successfully! Please login below.</span>
+          </div>
+          <div class="auth-form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            <span id="successMsg">Login successful! Redirecting...</span>
+          </div>
+          <div class="auth-form-fail" id="formFail">
+            <i class="fas fa-circle-exclamation"></i>
+            <span id="failMsg">Invalid email or password.</span>
+          </div>
+
+          <form id="loginForm" novalidate autocomplete="off">
+
+            <div class="auth-form-group" id="loginRoleGroup">
+              <label for="loginRole">Login As <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-user-shield field-icon"></i>
+                <select id="loginRole" name="role">
+                  <option value="">Select role</option>
+                  <option value="user">Investor / User</option>
+                  <option value="admin">Administrator</option>
+                </select>
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Please select a role to continue.</span></div>
+              <div class="role-hint" id="roleHint"><i class="fas fa-circle-info"></i><span id="roleHintText"></span></div>
+            </div>
+
+            <div class="auth-form-group" id="loginEmailGroup">
+              <label for="loginEmail">Email Address <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-envelope field-icon"></i>
+                <input type="text" id="loginEmail" name="email" placeholder="you@example.com" autocomplete="off">
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Enter a valid email address.</span></div>
+            </div>
+
+            <div class="auth-form-group" id="loginPassGroup">
+              <label for="loginPassword">Password <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-lock field-icon"></i>
+                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" autocomplete="off">
+                <button type="button" class="toggle-pass" data-target="loginPassword"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Password must be at least 6 characters.</span></div>
+            </div>
+
+            <div class="auth-extra-row">
+              <label class="auth-remember"><input type="checkbox" id="rememberMe"> Remember me</label>
+              <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-gold" id="loginBtn">Login <i class="fas fa-arrow-right"></i></button>
+          </form>
+
+          <div class="auth-divider">New Here</div>
+          <div class="auth-switch" style="margin-top:0;">Don't have an account? <a href="./signup.html">Create one now</a></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="container">
@@ -71,7 +191,7 @@
         <ul>
           <li><a href="./home.html">Home</a></li>
           <li><a href="./about.html">About Us</a></li>
-          <li><a href="./serivce.html">Service</a></li>
+          <li><a href="./service.html">Service</a></li>
           <li><a href="./blog.html">blog</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ul>
@@ -132,43 +252,150 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
-  /* ── BAR CHART ANIMATION ────────────── */
-  const barIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-        barIo.disconnect();
+  /* ── PASSWORD VISIBILITY TOGGLE ─────── */
+  document.querySelectorAll('.toggle-pass').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      const icon = btn.querySelector('i');
+      if (target.type === 'password') {
+        target.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        target.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
       }
     });
-  }, { threshold: 0.4 });
-  const perfBars = document.querySelector('.perf-bars');
-  if (perfBars) barIo.observe(perfBars);
+  });
 
-  /* ── COUNTER ANIMATION ──────────────── */
-  const counterIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.stat-num').forEach(el => {
-          const txt = el.textContent;
-          // simple pulse
-          el.style.transition = 'transform .3s';
-          el.style.transform = 'scale(1.1)';
-          setTimeout(() => el.style.transform = 'scale(1)', 300);
-        });
-        counterIo.disconnect();
+  /* ── SHOW "ACCOUNT CREATED" NOTICE IF REDIRECTED FROM SIGNUP ── */
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('signup') === 'success') {
+    const notice = document.getElementById('signupNotice');
+    notice.classList.add('show');
+    notice.style.display = 'flex';
+    // pre-select the role they signed up with, for convenience
+    const role = params.get('role');
+    if (role) document.getElementById('loginRole').value = role;
+  }
+
+  /* ── ROLE HINT TEXT ─────────────────── */
+  const loginRoleSelect = document.getElementById('loginRole');
+  const roleHint = document.getElementById('roleHint');
+  const roleHintText = document.getElementById('roleHintText');
+  loginRoleSelect.addEventListener('change', () => {
+    if (loginRoleSelect.value === 'admin') {
+      roleHintText.textContent = "You'll be redirected to the Admin Dashboard after login.";
+      roleHint.classList.add('show');
+    } else if (loginRoleSelect.value === 'user') {
+      roleHintText.textContent = "You'll be redirected to your Investor Dashboard after login.";
+      roleHint.classList.add('show');
+    } else {
+      roleHint.classList.remove('show');
+    }
+  });
+
+  /* ══════════════════════════════════════════
+       LOGIN FORM VALIDATION + ROLE-BASED REDIRECT
+  ══════════════════════════════════════════ */
+  const form = document.getElementById('loginForm');
+  const formSuccess = document.getElementById('formSuccess');
+  const formFail = document.getElementById('formFail');
+  const successMsg = document.getElementById('successMsg');
+  const failMsg = document.getElementById('failMsg');
+  const loginBtn = document.getElementById('loginBtn');
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|org|net|co|edu|gov|io|co\.in|info|biz)$/i;
+
+  const fields = {
+    role: {
+      input: document.getElementById('loginRole'),
+      group: document.getElementById('loginRoleGroup'),
+      validate: (v) => v.trim() !== ''
+    },
+    email: {
+      input: document.getElementById('loginEmail'),
+      group: document.getElementById('loginEmailGroup'),
+      validate: (v) => emailRegex.test(v.trim())
+    },
+    password: {
+      input: document.getElementById('loginPassword'),
+      group: document.getElementById('loginPassGroup'),
+      validate: (v) => v.trim().length >= 6
+    }
+  };
+
+  function setFieldState(key, isValid) {
+    fields[key].group.classList.toggle('error', !isValid);
+  }
+
+  Object.keys(fields).forEach(key => {
+    const { input } = fields[key];
+    const eventType = (input.tagName === 'SELECT') ? 'change' : 'input';
+    input.addEventListener(eventType, () => {
+      if (input.value.trim() !== '') {
+        setFieldState(key, fields[key].validate(input.value));
+      } else {
+        fields[key].group.classList.remove('error');
       }
     });
-  }, { threshold: 0.5 });
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) counterIo.observe(heroStats);
+  });
 
-  /* ── REDUCE MOTION ──────────────────── */
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.ticker-track,.testi-track,.gold-line,.hero-card-float,.cta-ring').forEach(el => {
-      el.style.animation = 'none';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let allValid = true;
+
+    Object.keys(fields).forEach(key => {
+      const { input, validate } = fields[key];
+      const valid = validate(input.value);
+      setFieldState(key, valid);
+      if (!valid) allValid = false;
     });
+
+    formSuccess.classList.remove('show');
+    formFail.classList.remove('show');
+
+    if (!allValid) {
+      const firstError = form.querySelector('.auth-form-group.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const selectedRole = fields.role.input.value;       // 'user' or 'admin'
+    const email = fields.email.input.value.trim().toLowerCase();
+    const firstName = email.split('@')[0];
+
+    // ── no signup/account lookup needed — email format + password length already validated above ──
+    sessionStorage.setItem('stackly_logged_in', 'true');
+    sessionStorage.setItem('stackly_user_email', email);
+    sessionStorage.setItem('stackly_user_role', selectedRole);
+    sessionStorage.setItem('stackly_user_name', firstName);
+    if (document.getElementById('rememberMe').checked) {
+      localStorage.setItem('stackly_remember_email', email);
+    }
+
+    successMsg.textContent = `Welcome back! Redirecting to your ${selectedRole === 'admin' ? 'Admin' : 'User'} dashboard...`;
+    formSuccess.classList.add('show');
+    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Logging in...';
+
+    setTimeout(() => {
+      if (selectedRole === 'admin') {
+        window.location.href = './admin.html';
+      } else {
+        window.location.href = './user.html';
+      }
+    }, 1200);
+  });
+
+  /* ── pre-fill remembered email ──────── */
+  const rememberedEmail = localStorage.getItem('stackly_remember_email');
+  if (rememberedEmail) {
+    document.getElementById('loginEmail').value = rememberedEmail;
+    document.getElementById('rememberMe').checked = true;
   }
 </script>
 </body>

@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stackly Advisory | Premium Mutual Fund Solutions</title>
+  <title>Sign Up | Stackly Mutual Fund Advisory</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body>
 
@@ -31,17 +33,216 @@
 <!-- ══ MOBILE MENU ══ -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="./home.html">Home</a>
-<a href="./about.html">About</a>
-<a href="./service.html">Services</a>
-<a href="./blog.html">blog</a>
-<a href="./contact.html">Contact</a>
+  <a href="./about.html">About</a>
+  <a href="./service.html">Services</a>
+  <a href="./blog.html">blog</a>
+  <a href="./contact.html">Contact</a>
   <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
 </div>
 
 <div class="sections">
 
-    
+<!-- ══════════════════════════════════════════
+     SIGNUP SECTION
+══════════════════════════════════════════ -->
+<section id="auth-section">
+  <div class="auth-bg"></div>
+  <div class="auth-overlay"></div>
+  <div class="auth-ring"></div>
+  <div class="auth-ring"></div>
+  <div class="auth-ring"></div>
+
+  <div class="container">
+    <div class="auth-wrap">
+      <div class="auth-grid">
+
+        <!-- LEFT INFO PANEL -->
+        <div class="auth-info reveal-left">
+          <div class="breadcrumb">
+            <a href="./home.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Sign Up</span>
+          </div>
+          <span class="section-tag"><i class="fas fa-user-plus"></i> Create Your Account</span>
+          <h1 class="auth-info-title">Start Your <span>Investing</span> Journey Today</h1>
+          <p class="auth-info-sub">Join thousands of investors who trust Stackly for honest, SEBI-registered mutual fund advisory. Create your free account in under a minute.</p>
+
+          <div class="auth-feature-list">
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-shield-halved"></i></div>
+              <div class="auth-feature-text"><h4>SEBI Registered</h4><p>Fully compliant, research-backed guidance</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-chart-pie"></i></div>
+              <div class="auth-feature-text"><h4>Portfolio Tracking</h4><p>Monitor your investments in real time</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-user-tie"></i></div>
+              <div class="auth-feature-text"><h4>Dedicated Advisor</h4><p>Personalised guidance, zero scripts</p></div>
+            </div>
+            <div class="auth-feature">
+              <div class="auth-feature-icon"><i class="fas fa-lock"></i></div>
+              <div class="auth-feature-text"><h4>Secure & Private</h4><p>Bank-grade data protection always</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIGNUP FORM CARD -->
+        <div class="auth-card reveal-right">
+          <div class="auth-card-head">
+            <div class="auth-card-icon"><i class="fas fa-user-plus"></i></div>
+            <h2>Create Account</h2>
+            <p>Fill in your details to get started — it's free.</p>
+          </div>
+
+          <div class="auth-form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i>
+            <span>Account created successfully! Redirecting you to login...</span>
+          </div>
+          <div class="auth-form-fail" id="formFail">
+            <i class="fas fa-circle-exclamation"></i>
+            <span>An account with this email already exists. Please login instead.</span>
+          </div>
+
+          <form id="signupForm" novalidate autocomplete="off">
+
+            <div class="auth-form-row">
+              <div class="auth-form-group" id="fNameGroup">
+                <label for="firstName">First Name <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-user field-icon"></i>
+                  <input type="text" id="firstName" name="firstName" placeholder="Hari" autocomplete="off">
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Letters only, no numbers.</span></div>
+              </div>
+              <div class="auth-form-group" id="lNameGroup">
+                <label for="lastName">Last Name <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-user field-icon"></i>
+                  <input type="text" id="lastName" name="lastName" placeholder="Krishnan" autocomplete="off">
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Letters only, no numbers.</span></div>
+              </div>
+            </div>
+
+            <div class="auth-form-group" id="emailGroup">
+              <label for="signupEmail">Email Address <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-envelope field-icon"></i>
+                <input type="text" id="signupEmail" name="email" placeholder="you@example.com" autocomplete="off">
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Enter a valid email ending in .com, .in, .org etc.</span></div>
+            </div>
+
+            <div class="auth-form-row">
+              <div class="auth-form-group" id="phoneGroup">
+                <label for="signupPhone">Phone Number <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-phone-alt field-icon"></i>
+                  <input type="tel" id="signupPhone" name="phone" placeholder="10-digit mobile" autocomplete="off">
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Enter a valid 10-digit phone number.</span></div>
+              </div>
+              <div class="auth-form-group" id="dobGroup">
+                <label for="dob">Date of Birth <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-calendar field-icon"></i>
+                  <input type="date" id="dob" name="dob" autocomplete="off">
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>You must be at least 18 years old.</span></div>
+              </div>
+            </div>
+
+            <div class="auth-form-row">
+              <div class="auth-form-group" id="genderGroup">
+                <label for="gender">Gender <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-venus-mars field-icon"></i>
+                  <select id="gender" name="gender">
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not">Prefer not to say</option>
+                  </select>
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Please select a gender.</span></div>
+              </div>
+              <div class="auth-form-group" id="roleGroup">
+                <label for="signupRole">Register As <span class="req">*</span></label>
+                <div class="auth-input-wrap">
+                  <i class="fas fa-user-shield field-icon"></i>
+                  <select id="signupRole" name="role">
+                    <option value="">Select role</option>
+                    <option value="user">Investor / User</option>
+                    <option value="admin">Administrator</option>
+                  </select>
+                </div>
+                <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Please select your role.</span></div>
+              </div>
+            </div>
+
+            <div class="auth-form-group" id="cityGroup">
+              <label for="city">City <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-map-marker-alt field-icon"></i>
+                <input type="text" id="city" name="city" placeholder="e.g. Chennai" autocomplete="off">
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Please enter a valid city name.</span></div>
+            </div>
+
+            <div class="auth-form-group" id="panGroup">
+              <label for="pan">PAN Number <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-id-card field-icon"></i>
+                <input type="text" id="pan" name="pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase;" autocomplete="off">
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Enter a valid 10-character PAN (e.g. ABCDE1234F).</span></div>
+            </div>
+
+            <div class="auth-form-group" id="passGroup">
+              <label for="signupPassword">Password <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-lock field-icon"></i>
+                <input type="password" id="signupPassword" name="password" placeholder="Create a strong password" autocomplete="new-password">
+                <button type="button" class="toggle-pass" data-target="signupPassword"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="pw-strength" id="pwStrength">
+                <div class="pw-strength-bar"></div><div class="pw-strength-bar"></div><div class="pw-strength-bar"></div><div class="pw-strength-bar"></div>
+              </div>
+              <div class="pw-strength-label" id="pwStrengthLabel">Minimum 6 characters required</div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Password must be at least 6 characters.</span></div>
+            </div>
+
+            <div class="auth-form-group" id="confirmPassGroup">
+              <label for="confirmPassword">Confirm Password <span class="req">*</span></label>
+              <div class="auth-input-wrap">
+                <i class="fas fa-lock field-icon"></i>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password">
+                <button type="button" class="toggle-pass" data-target="confirmPassword"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Passwords do not match.</span></div>
+            </div>
+
+            <div class="auth-terms" id="termsGroup">
+              <input type="checkbox" id="agreeTerms" name="agreeTerms">
+              <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>, and confirm the information above is accurate.</label>
+            </div>
+            <div class="auth-error-msg" id="termsError" style="margin-bottom:18px;"><i class="fas fa-circle-exclamation"></i><span>You must accept the terms to continue.</span></div>
+
+            <button type="submit" class="btn-gold" id="signupBtn" style="margin-top:8px;">Create Account <i class="fas fa-arrow-right"></i></button>
+          </form>
+
+          <div class="auth-switch">Already have an account? <a href="./login.html">Login here</a></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 </div>
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="container">
@@ -71,7 +272,7 @@
         <ul>
           <li><a href="./home.html">Home</a></li>
           <li><a href="./about.html">About Us</a></li>
-          <li><a href="./serivce.html">Service</a></li>
+          <li><a href="./service.html">Service</a></li>
           <li><a href="./blog.html">blog</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ul>
@@ -132,44 +333,230 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 
-  /* ── BAR CHART ANIMATION ────────────── */
-  const barIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-        barIo.disconnect();
+  /* ── PASSWORD VISIBILITY TOGGLE ─────── */
+  document.querySelectorAll('.toggle-pass').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      const icon = btn.querySelector('i');
+      if (target.type === 'password') {
+        target.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        target.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
       }
     });
-  }, { threshold: 0.4 });
-  const perfBars = document.querySelector('.perf-bars');
-  if (perfBars) barIo.observe(perfBars);
+  });
 
-  /* ── COUNTER ANIMATION ──────────────── */
-  const counterIo = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.stat-num').forEach(el => {
-          const txt = el.textContent;
-          // simple pulse
-          el.style.transition = 'transform .3s';
-          el.style.transform = 'scale(1.1)';
-          setTimeout(() => el.style.transform = 'scale(1)', 300);
-        });
-        counterIo.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) counterIo.observe(heroStats);
+  /* ══════════════════════════════════════════
+       SIGNUP FORM VALIDATION
+  ══════════════════════════════════════════ */
+  const form = document.getElementById('signupForm');
+  const formSuccess = document.getElementById('formSuccess');
+  const formFail = document.getElementById('formFail');
+  const signupBtn = document.getElementById('signupBtn');
 
-  /* ── REDUCE MOTION ──────────────────── */
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.ticker-track,.testi-track,.gold-line,.hero-card-float,.cta-ring').forEach(el => {
-      el.style.animation = 'none';
-    });
+  const nameRegex = /^[A-Za-z\s]{2,40}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|org|net|co|edu|gov|io|co\.in|info|biz)$/i;
+  const phoneRegex = /^[6-9]\d{9}$/;
+  const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+  const cityRegex = /^[A-Za-z\s]{2,40}$/;
+
+  function calcAge(dobStr) {
+    const dob = new Date(dobStr);
+    if (isNaN(dob.getTime())) return -1;
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+    return age;
   }
+
+  function passwordStrengthScore(pw) {
+    let score = 0;
+    if (pw.length >= 6) score++;
+    if (pw.length >= 8) score++;
+    if (pw.length >= 10) score++;
+    if (pw.length >= 12) score++;
+    return score;
+  }
+  function isStrongPassword(pw) {
+    return pw.length >= 6;
+  }
+
+  const fields = {
+    firstName: {
+      input: document.getElementById('firstName'),
+      group: document.getElementById('fNameGroup'),
+      validate: (v) => nameRegex.test(v.trim())
+    },
+    lastName: {
+      input: document.getElementById('lastName'),
+      group: document.getElementById('lNameGroup'),
+      validate: (v) => nameRegex.test(v.trim())
+    },
+    email: {
+      input: document.getElementById('signupEmail'),
+      group: document.getElementById('emailGroup'),
+      validate: (v) => emailRegex.test(v.trim())
+    },
+    phone: {
+      input: document.getElementById('signupPhone'),
+      group: document.getElementById('phoneGroup'),
+      validate: (v) => phoneRegex.test(v.trim())
+    },
+    dob: {
+      input: document.getElementById('dob'),
+      group: document.getElementById('dobGroup'),
+      validate: (v) => v.trim() !== '' && calcAge(v) >= 18
+    },
+    gender: {
+      input: document.getElementById('gender'),
+      group: document.getElementById('genderGroup'),
+      validate: (v) => v.trim() !== ''
+    },
+    role: {
+      input: document.getElementById('signupRole'),
+      group: document.getElementById('roleGroup'),
+      validate: (v) => v.trim() !== ''
+    },
+    city: {
+      input: document.getElementById('city'),
+      group: document.getElementById('cityGroup'),
+      validate: (v) => cityRegex.test(v.trim())
+    },
+    pan: {
+      input: document.getElementById('pan'),
+      group: document.getElementById('panGroup'),
+      validate: (v) => panRegex.test(v.trim().toUpperCase())
+    },
+    password: {
+      input: document.getElementById('signupPassword'),
+      group: document.getElementById('passGroup'),
+      validate: (v) => isStrongPassword(v)
+    },
+    confirmPassword: {
+      input: document.getElementById('confirmPassword'),
+      group: document.getElementById('confirmPassGroup'),
+      validate: (v) => v === fields.password.input.value && v.trim() !== ''
+    }
+  };
+
+  // restrict name fields to letters only
+  ['firstName','lastName','city'].forEach(key => {
+    fields[key].input.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '');
+    });
+  });
+  // phone digits only
+  fields.phone.input.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+  });
+  // PAN uppercase + alphanumeric only
+  fields.pan.input.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 10);
+  });
+
+  // password strength live meter
+  fields.password.input.addEventListener('input', (e) => {
+    const score = passwordStrengthScore(e.target.value);
+    const bars = document.querySelectorAll('#pwStrength .pw-strength-bar');
+    const label = document.getElementById('pwStrengthLabel');
+    const colors = ['#f87171', '#fb923c', '#facc15', '#4ade80'];
+    const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+    bars.forEach((bar, i) => {
+      bar.style.background = i < score ? colors[Math.max(score - 1, 0)] : 'rgba(255,255,255,.1)';
+    });
+    label.textContent = e.target.value.length === 0
+      ? 'Minimum 6 characters required'
+      : `Strength: ${labels[Math.max(score - 1, 0)]}`;
+  });
+
+  function setFieldState(key, isValid) {
+    fields[key].group.classList.toggle('error', !isValid);
+  }
+
+  Object.keys(fields).forEach(key => {
+    const { input } = fields[key];
+    const eventType = (input.tagName === 'SELECT') ? 'change' : 'input';
+    input.addEventListener(eventType, () => {
+      if (input.value.trim() !== '') {
+        setFieldState(key, fields[key].validate(input.value));
+      } else {
+        fields[key].group.classList.remove('error');
+      }
+      // re-validate confirm password whenever password changes
+      if (key === 'password' && fields.confirmPassword.input.value.trim() !== '') {
+        setFieldState('confirmPassword', fields.confirmPassword.validate(fields.confirmPassword.input.value));
+      }
+    });
+  });
+
+  const termsCheckbox = document.getElementById('agreeTerms');
+  const termsError = document.getElementById('termsError');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let allValid = true;
+
+    Object.keys(fields).forEach(key => {
+      const { input, validate } = fields[key];
+      const valid = validate(input.value);
+      setFieldState(key, valid);
+      if (!valid) allValid = false;
+    });
+
+    const termsOk = termsCheckbox.checked;
+    termsError.style.display = termsOk ? 'none' : 'flex';
+    if (!termsOk) allValid = false;
+
+    formSuccess.classList.remove('show');
+    formFail.classList.remove('show');
+
+    if (!allValid) {
+      const firstError = form.querySelector('.auth-form-group.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // ── check for duplicate email in localStorage "stackly_users" ──
+    const email = fields.email.input.value.trim().toLowerCase();
+    let users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
+    const exists = users.some(u => u.email === email);
+
+    if (exists) {
+      formFail.classList.add('show');
+      formFail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // ── save new user record ──
+    const newUser = {
+      firstName: fields.firstName.input.value.trim(),
+      lastName: fields.lastName.input.value.trim(),
+      email: email,
+      phone: fields.phone.input.value.trim(),
+      dob: fields.dob.input.value,
+      gender: fields.gender.input.value,
+      role: fields.role.input.value, // 'user' or 'admin'
+      city: fields.city.input.value.trim(),
+      pan: fields.pan.input.value.trim().toUpperCase(),
+      password: fields.password.input.value // demo only — never store plaintext in production
+    };
+    users.push(newUser);
+    localStorage.setItem('stackly_users', JSON.stringify(users));
+
+    signupBtn.disabled = true;
+    signupBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Creating Account...';
+    formSuccess.classList.add('show');
+    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    setTimeout(() => {
+      window.location.href = './login.html?signup=success&role=' + encodeURIComponent(newUser.role);
+    }, 1600);
+  });
 </script>
 </body>
 </html>

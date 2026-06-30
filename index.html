@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stackly | Loading...</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <meta http-equiv="refresh" content="3;url=./home.html">
+  <style>
+    :root{
+      --navy:#0A0A0F;
+      --midnight:#12121A;
+      --gold:#A78BFA;
+      --gold-lt:#C4B5FD;
+      --slate:#9CA3AF;
+      --white:#FFFFFF;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;overflow:hidden;}
+    body{
+      background:var(--navy);
+      color:var(--white);
+      font-family:'Inter',sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    /* ── background ambience ── */
+    .load-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;filter:brightness(.12);}
+    .load-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,10,15,.97) 0%,rgba(10,10,15,.9) 100%);}
+    .load-ring-deco{position:absolute;width:500px;height:500px;border:1px solid rgba(167,139,250,.08);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:deco-pulse 4s ease-in-out infinite;}
+    .load-ring-deco:nth-child(3){width:700px;height:700px;animation-delay:.6s;}
+    .load-ring-deco:nth-child(4){width:900px;height:900px;animation-delay:1.2s;}
+    @keyframes deco-pulse{0%,100%{opacity:.25;transform:translate(-50%,-50%) scale(1);}50%{opacity:.08;transform:translate(-50%,-50%) scale(1.03);}}
+
+    /* ── content ── */
+    .load-content{position:relative;z-index:2;text-align:center;}
+
+    .load-logo{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      font-weight:900;
+      letter-spacing:.02em;
+      margin-bottom:36px;
+      opacity:0;
+      animation:logo-in .8s .1s ease forwards;
+    }
+    .load-logo i{color:var(--gold);margin-right:10px;}
+    .load-logo span{color:var(--gold);}
+    @keyframes logo-in{
+      from{opacity:0;transform:translateY(14px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    /* ── spinner ring ── */
+    .spinner{
+      width:64px;height:64px;
+      margin:0 auto 28px;
+      position:relative;
+    }
+    .spinner-ring{
+      width:100%;height:100%;
+      border-radius:50%;
+      border:3px solid rgba(167,139,250,.12);
+      border-top-color:var(--gold);
+      border-right-color:var(--gold-lt);
+      animation:spin 0.9s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    .load-text{
+      font-size:.85rem;
+      color:var(--slate);
+      letter-spacing:.04em;
+      margin-bottom:30px;
+      opacity:0;
+      animation:logo-in .8s .3s ease forwards;
+    }
+    .load-text .dots{display:inline-block;width:18px;text-align:left;}
+
+    /* ── progress bar (animates to 100% over 3s) ── */
+    .progress-track{
+      width:220px;
+      height:3px;
+      background:rgba(255,255,255,.08);
+      border-radius:3px;
+      margin:0 auto;
+      overflow:hidden;
+      opacity:0;
+      animation:logo-in .8s .45s ease forwards;
+    }
+    .progress-fill{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--gold),var(--gold-lt));
+      border-radius:3px;
+      animation:fillBar 3s linear forwards;
+    }
+    @keyframes fillBar{
+      from{width:0%;}
+      to{width:100%;}
+    }
+
+    .progress-pct{
+      margin-top:12px;
+      font-size:.72rem;
+      color:var(--gold);
+      font-weight:600;
+      letter-spacing:.06em;
+      opacity:0;
+      animation:logo-in .8s .45s ease forwards;
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .load-ring-deco,.spinner-ring,.progress-fill{animation-duration:.01ms !important;}
+    }
+
+    @media(max-width:480px){
+      .load-logo{font-size:1.6rem;}
+      .progress-track{width:180px;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="load-bg"></div>
+  <div class="load-overlay"></div>
+  <div class="load-ring-deco"></div>
+  <div class="load-ring-deco"></div>
+  <div class="load-ring-deco"></div>
+
+  <div class="load-content">
+    <div class="load-logo"><i class="fas fa-chart-line"></i>Stack<span>ly</span></div>
+
+    <div class="spinner"><div class="spinner-ring"></div></div>
+
+    <div class="load-text">Preparing your dashboard<span class="dots" id="dots">...</span></div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-pct" id="progressPct">0%</div>
+  </div>
+
+  <script>
+    // ── animated dot cycle ──
+    const dotsEl = document.getElementById('dots');
+    let dotCount = 3;
+    setInterval(() => {
+      dotCount = (dotCount % 3) + 1;
+      dotsEl.textContent = '.'.repeat(dotCount);
+    }, 400);
+
+    // ── animated percentage counter synced to the 3s progress bar ──
+    const pctEl = document.getElementById('progressPct');
+    const duration = 3000;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+      pctEl.textContent = pct + '%';
+      if (elapsed < duration) {
+        requestAnimationFrame(tick);
+      }
+    }
+    requestAnimationFrame(tick);
+
+    // ── redirect to home.html after exactly 3 seconds ──
+    // (meta refresh tag above is a no-JS fallback; this is the primary trigger)
+    setTimeout(() => {
+      window.location.href = './home.html';
+    }, 3000);
+  </script>
+</body>
+</html>
