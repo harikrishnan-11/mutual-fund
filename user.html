@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Dashboard | Stackly</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0B0D; --panel:#131316; --panel2:#18181C; --card:#161619;
+  --border:rgba(255,255,255,.07); --border-lit:rgba(167,139,250,.4);
+  --violet:#A78BFA; --violet-dk:#8B5CF6; --violet-soft:rgba(167,139,250,.12);
+  --text:#fff; --text2:rgba(255,255,255,.55); --text3:rgba(255,255,255,.3);
+  --red:#f87171; --green:#4ade80; --amber:#fbbf24;
+  --grad:linear-gradient(135deg,#A78BFA,#8B5CF6);
+  --fd:'Playfair Display',serif; --fb:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sb:260px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--violet-dk);border-radius:3px;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+img{display:block;max-width:100%;}
+
+/* ─── LAYOUT ─── */
+.app{display:flex;min-height:100vh;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:var(--sb);flex-shrink:0;background:var(--panel);
+  border-right:1px solid var(--border);padding:24px 18px;
+  display:flex;flex-direction:column;position:fixed;
+  top:0;bottom:0;left:0;z-index:300;overflow-y:auto;
+  transition:transform .35s var(--ease),box-shadow .35s;
+}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-shrink:0;}
+.sb-logo-icon{width:34px;height:34px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:.95rem;flex-shrink:0;}
+.sb-logo-text{font-family:var(--fd);font-size:1.2rem;font-weight:800;}
+.sb-label{font-size:.65rem;letter-spacing:.18em;color:var(--text3);font-weight:700;margin:0 0 10px 4px;text-transform:uppercase;}
+.sb-nav{list-style:none;display:flex;flex-direction:column;gap:3px;margin-bottom:22px;}
+.sb-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:11px 13px;border-radius:10px;border:none;background:none;
+  color:var(--text2);font-size:.86rem;font-weight:500;text-align:left;
+  transition:background .2s,color .2s;
+}
+.sb-btn-l{display:flex;align-items:center;gap:10px;}
+.sb-ic{width:16px;text-align:center;font-size:.82rem;color:var(--text3);transition:color .2s;}
+.sb-btn:hover{background:rgba(255,255,255,.04);color:var(--text);}
+.sb-btn:hover .sb-ic{color:var(--violet);}
+.sb-btn.active{background:var(--grad);color:var(--bg);font-weight:700;}
+.sb-btn.active .sb-ic{color:var(--bg);}
+.sb-badge{font-size:.64rem;background:var(--violet-soft);color:var(--violet);padding:2px 7px;border-radius:20px;font-weight:700;}
+.sb-btn.active .sb-badge{background:rgba(0,0,0,.2);color:var(--bg);}
+.sb-div{height:1px;background:var(--border);margin:16px 0;}
+.sb-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);}
+.sb-user{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:rgba(255,255,255,.03);}
+.sb-avatar{width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:.82rem;flex-shrink:0;}
+.sb-uname{font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-urole{font-size:.68rem;color:var(--text3);}
+.sb-close{display:none;position:absolute;top:22px;right:18px;background:none;border:none;color:var(--text2);font-size:1rem;}
+
+/* ─── OVERLAY ─── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:250;backdrop-filter:blur(3px);}
+.overlay.show{display:block;}
+
+/* ─── MAIN ─── */
+.main{margin-left:var(--sb);flex:1;min-width:0;padding:28px 36px 60px;transition:margin .35s var(--ease);}
+
+/* ─── TOPBAR ─── */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:14px;flex-wrap:wrap;}
+.tb-l{display:flex;align-items:center;gap:12px;}
+.tb-l h1{font-family:var(--fd);font-size:1.75rem;font-weight:800;letter-spacing:-.02em;line-height:1.15;}
+.tb-l p{color:var(--text2);font-size:.84rem;margin-top:3px;}
+.tb-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.tb-search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:190px;}
+.tb-search input{background:none;border:none;outline:none;color:var(--text);font-size:.82rem;width:100%;font-family:var(--fb);}
+.tb-search input::placeholder{color:var(--text3);}
+.tb-search i{color:var(--text3);font-size:.8rem;}
+.tb-icon{width:36px;height:36px;border-radius:9px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);position:relative;transition:border-color .2s,color .2s;}
+.tb-icon:hover{border-color:var(--border-lit);color:var(--violet);}
+.tb-dot{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 0 2px var(--card);}
+.tb-chip{display:flex;align-items:center;gap:7px;background:var(--grad);color:var(--bg);padding:8px 14px;border-radius:9px;font-weight:700;font-size:.8rem;border:none;}
+.tb-user{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:9px;padding:5px 12px 5px 5px;transition:border-color .2s;}
+.tb-user:hover{border-color:var(--border-lit);}
+.tb-uavatar{width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:700;font-size:.74rem;}
+.tb-uemail{font-size:.78rem;font-weight:500;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tb-logout{display:flex;align-items:center;gap:7px;background:var(--grad);color:var(--bg);padding:9px 18px;border-radius:50px;font-weight:700;font-size:.82rem;border:none;transition:transform .2s,box-shadow .3s;}
+.tb-logout:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(167,139,250,.3);}
+.hbg{display:none;width:36px;height:36px;border-radius:9px;background:var(--card);border:1px solid var(--border);align-items:center;justify-content:center;color:var(--text);}
+
+/* ─── PAGES ─── */
+.page{display:none;}
+.page.active{display:block;animation:pgIn .4s var(--ease);}
+@keyframes pgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* ─── WELCOME BANNER ─── */
+.welcome-banner{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px 32px;margin-bottom:20px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;
+  position:relative;overflow:hidden;
+}
+.welcome-banner::before{
+  content:'';position:absolute;right:-60px;top:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(167,139,250,.15),transparent 70%);pointer-events:none;
+}
+.wb-left h2{font-family:var(--fd);font-size:1.55rem;font-weight:800;}
+.wb-left h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wb-left p{color:var(--text2);font-size:.86rem;margin-top:6px;line-height:1.6;}
+.wb-right{display:flex;gap:10px;flex-wrap:wrap;}
+.wb-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:9px;font-weight:600;font-size:.82rem;border:none;cursor:pointer;transition:transform .2s,box-shadow .3s;}
+.wb-btn.primary{background:var(--grad);color:var(--bg);}
+.wb-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(167,139,250,.3);}
+.wb-btn.outline{background:transparent;color:var(--violet);border:1px solid var(--border-lit);}
+.wb-btn.outline:hover{background:var(--violet-soft);}
+
+/* ─── STAT CARDS ─── */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;transition:border-color .3s,transform .3s;}
+.stat:hover{border-color:var(--border-lit);transform:translateY(-3px);}
+.stat-lbl{font-size:.78rem;color:var(--text2);margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.stat-lbl i{color:var(--violet);font-size:.8rem;}
+.stat-val{font-family:var(--fd);font-size:1.7rem;font-weight:800;line-height:1.1;}
+.stat-val.v{color:var(--violet);}
+.stat-val.g{color:var(--green);}
+.stat-sub{font-size:.74rem;margin-top:8px;color:var(--text3);}
+.stat-sub.up{color:var(--green);}
+.stat-sub.dn{color:var(--red);}
+
+/* ─── GRIDS ─── */
+.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin-bottom:18px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px;}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px;}
+.ph h3{font-family:var(--fd);font-size:1.1rem;font-weight:700;}
+.pl{font-size:.76rem;color:var(--violet);font-weight:600;display:flex;align-items:center;gap:5px;cursor:pointer;}
+.pl:hover{opacity:.8;}
+
+/* ─── DONUT ─── */
+.alloc-wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.donut-pos{position:relative;flex-shrink:0;}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:.95rem;}
+.alloc-legend{flex:1;min-width:180px;}
+.al-ttl{font-size:.76rem;color:var(--text2);margin-bottom:3px;}
+.al-val{font-family:var(--fd);font-size:1.5rem;font-weight:800;margin-bottom:14px;}
+.al-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.al-row:last-child{border-bottom:none;}
+.al-name{display:flex;align-items:center;gap:8px;color:var(--text2);}
+.al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.al-pct{font-weight:700;}
+
+/* ─── MINI CHART ─── */
+.nav-val{font-family:var(--fd);font-size:1.7rem;font-weight:800;margin:6px 0 14px;}
+.mini-chart{height:120px;}
+.mini-chart svg{width:100%;height:100%;}
+
+/* ─── QUICK ACTIONS ─── */
+.qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;}
+.qa{background:var(--card);border:1px solid var(--border);border-radius:13px;padding:18px;text-align:center;transition:transform .3s,border-color .3s;cursor:pointer;}
+.qa:hover{transform:translateY(-4px);border-color:var(--border-lit);}
+.qa-ic{width:42px;height:42px;border-radius:11px;background:var(--violet-soft);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:1rem;margin:0 auto 10px;}
+.qa-lbl{font-size:.78rem;font-weight:600;}
+
+/* ─── TABLE ─── */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tbl{width:100%;border-collapse:collapse;min-width:480px;}
+.tbl th{text-align:left;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:0 10px 12px;font-weight:600;white-space:nowrap;}
+.tbl td{padding:13px 10px;font-size:.82rem;border-top:1px solid var(--border);white-space:nowrap;}
+.tbl tr:hover td{background:rgba(255,255,255,.012);}
+.t-ic{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.76rem;margin-right:9px;flex-shrink:0;}
+.t-merchant{display:flex;align-items:center;}
+.t-name{font-weight:600;font-size:.84rem;}
+.t-cat{font-size:.7rem;color:var(--text3);}
+.t-amt{font-weight:700;text-align:right;}
+.t-amt.pos{color:var(--green);}
+.t-amt.neg{color:var(--red);}
+.t-badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:600;padding:3px 9px;border-radius:20px;}
+.t-badge.done{background:rgba(74,222,128,.1);color:var(--green);}
+.t-badge.pend{background:rgba(251,191,36,.1);color:var(--amber);}
+.t-badge.fail{background:rgba(248,113,113,.1);color:var(--red);}
+
+/* ─── BAR CHART ─── */
+.bar-wrap{display:flex;align-items:flex-end;gap:10px;height:200px;padding-top:16px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end;}
+.bar-fill{width:100%;border-radius:6px 6px 0 0;background:var(--grad);transition:height 1.1s var(--ease);}
+.bar-fill.alt{background:rgba(167,139,250,.2);}
+.bar-lbl{font-size:.7rem;color:var(--text3);}
+
+/* ─── PROGRESS ─── */
+.prog-item{margin-bottom:18px;}
+.prog-item:last-child{margin-bottom:0;}
+.prog-head{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:7px;flex-wrap:wrap;gap:4px;}
+.prog-name{font-weight:600;}
+.prog-meta{color:var(--text2);font-size:.75rem;}
+.prog-track{height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;background:var(--grad);transition:width 1.2s var(--ease);}
+.prog-fill.warn{background:linear-gradient(135deg,#fbbf24,#f59e0b);}
+.prog-fill.done-clr{background:linear-gradient(135deg,#4ade80,#16a34a);}
+
+/* ─── FUND ROWS ─── */
+.fund-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;}
+.fund-row:last-child{border-bottom:none;}
+.fund-l{display:flex;align-items:center;gap:11px;min-width:0;}
+.fund-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.74rem;color:var(--bg);flex-shrink:0;}
+.fund-name{font-weight:600;font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fund-cat{font-size:.7rem;color:var(--text3);}
+.fund-mid{display:flex;gap:24px;flex-shrink:0;}
+.fund-mid-col{text-align:center;}
+.fm-lbl{font-size:.66rem;color:var(--text3);margin-bottom:3px;}
+.fm-val{font-size:.8rem;font-weight:600;}
+.fund-r{text-align:right;flex-shrink:0;}
+.fund-val{font-weight:700;font-size:.88rem;}
+.fund-chg{font-size:.74rem;margin-top:2px;}
+
+/* ─── INSIGHT CARDS ─── */
+.insight-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:20px;display:flex;align-items:flex-start;gap:14px;
+  transition:border-color .3s,transform .3s;
+}
+.insight-card:hover{border-color:var(--border-lit);transform:translateY(-2px);}
+.insight-ic{width:40px;height:40px;border-radius:10px;background:var(--violet-soft);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.insight-title{font-weight:600;font-size:.86rem;margin-bottom:4px;}
+.insight-desc{font-size:.78rem;color:var(--text2);line-height:1.55;}
+
+/* ─── SETTINGS ─── */
+.set-card{max-width:620px;}
+.set-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.set-field label{display:block;font-size:.76rem;color:var(--text2);margin-bottom:6px;font-weight:500;}
+.set-field input,.set-field select{width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--text);font-size:.84rem;font-family:var(--fb);outline:none;transition:border-color .3s;}
+.set-field input:focus,.set-field select:focus{border-color:var(--violet);}
+.set-field select option{background:var(--panel2);}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);}
+.tog-row:last-child{border-bottom:none;}
+.tog-name{font-size:.84rem;font-weight:500;}
+.tog-desc{font-size:.72rem;color:var(--text3);margin-top:2px;}
+.switch{position:relative;width:40px;height:22px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.sw-sl{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:22px;transition:.3s;}
+.sw-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+.switch input:checked + .sw-sl{background:var(--grad);}
+.switch input:checked + .sw-sl::before{transform:translateX(18px);}
+.btn-v{display:inline-flex;align-items:center;gap:7px;background:var(--grad);color:var(--bg);border:none;padding:11px 24px;border-radius:9px;font-weight:700;font-size:.84rem;transition:transform .2s,box-shadow .3s;margin-top:6px;}
+.btn-v:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(167,139,250,.3);}
+
+/* ─── KYC BANNER ─── */
+.kyc-banner{
+  display:flex;align-items:center;gap:14px;background:rgba(251,191,36,.08);
+  border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:16px 20px;margin-bottom:18px;
+}
+.kyc-banner i{color:var(--amber);font-size:1.1rem;flex-shrink:0;}
+.kyc-text{font-size:.83rem;line-height:1.55;}
+.kyc-text strong{color:var(--amber);}
+.kyc-link{margin-left:auto;font-size:.78rem;color:var(--amber);font-weight:600;white-space:nowrap;border:1px solid rgba(251,191,36,.3);padding:6px 14px;border-radius:8px;cursor:pointer;transition:background .2s;}
+.kyc-link:hover{background:rgba(251,191,36,.1);}
+
+/* ─── REVEAL ─── */
+.r{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.r.vis{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1200px){
+  .main{padding:24px 28px 50px;}
+  .grid2{grid-template-columns:1fr;}
+  .fund-mid{display:none;}
+}
+@media(max-width:1024px){
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .qa-grid{grid-template-columns:repeat(2,1fr);}
+  .grid3{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%);box-shadow:none;}
+  .sidebar.open{transform:translateX(0);box-shadow:0 0 60px rgba(0,0,0,.6);}
+  .sb-close{display:block;}
+  .main{margin-left:0;padding:20px 18px 50px;}
+  .hbg{display:flex;}
+  .tb-search{display:none;}
+  .tb-l h1{font-size:1.4rem;}
+}
+@media(max-width:640px){
+  .stat-row{grid-template-columns:1fr;}
+  .qa-grid{grid-template-columns:1fr 1fr;}
+  .set-row{grid-template-columns:1fr;}
+  .grid3{grid-template-columns:1fr;}
+  .alloc-wrap{flex-direction:column;align-items:flex-start;}
+  .tb-r{width:100%;justify-content:flex-start;}
+  .tb-chip{display:none;}
+  .wb-right{width:100%;}
+  .wb-btn{flex:1;justify-content:center;}
+  .kyc-banner{flex-wrap:wrap;}
+  .kyc-link{margin-left:0;width:100%;text-align:center;}
+}
+@media(max-width:420px){
+  .main{padding:16px 14px 48px;}
+  .panel{padding:18px 14px;}
+  .welcome-banner{padding:22px 18px;}
+  .topbar{gap:10px;}
+  .tb-logout span{display:none;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="app">
+
+<!-- ════ SIDEBAR ════ -->
+<aside class="sidebar" id="sidebar">
+  <button class="sb-close" id="sbClose"><i class="fas fa-xmark"></i></button>
+  <div class="sb-logo">
+    <div class="sb-logo-text"><a href="./home.html" class="logo"></i><img src="./src/logo.webp" alt=""></a></div>
+  </div>
+
+  <div class="sb-label">My Portfolio</div>
+  <ul class="sb-nav">
+    <li><button class="sb-btn active" data-page="overview">
+      <span class="sb-btn-l"><i class="fas fa-house sb-ic"></i>My Dashboard</span>
+    </button></li>
+    <li><button class="sb-btn" data-page="mytransactions">
+      <span class="sb-btn-l"><i class="fas fa-right-left sb-ic"></i>My Transactions</span>
+      <span class="sb-badge">5</span>
+    </button></li>
+    <li><button class="sb-btn" data-page="performance">
+      <span class="sb-btn-l"><i class="fas fa-chart-pie sb-ic"></i>Performance</span>
+    </button></li>
+  </ul>
+
+  <div class="sb-div"></div>
+
+  <div class="sb-label">Investments</div>
+  <ul class="sb-nav">
+    <li><button class="sb-btn" data-page="myholdings">
+      <span class="sb-btn-l"><i class="fas fa-layer-group sb-ic"></i>My Holdings</span>
+    </button></li>
+    <li><button class="sb-btn" data-page="mysip">
+      <span class="sb-btn-l"><i class="fas fa-calendar-check sb-ic"></i>My SIPs &amp; Goals</span>
+    </button></li>
+    <li><button class="sb-btn" data-page="explore">
+      <span class="sb-btn-l"><i class="fas fa-compass sb-ic"></i>Explore Funds</span>
+    </button></li>
+    <li><button class="sb-btn" data-page="settings">
+      <span class="sb-btn-l"><i class="fas fa-gear sb-ic"></i>Settings</span>
+    </button></li>
+  </ul>
+
+  <div class="sb-foot">
+    <div class="sb-user">
+      <div class="sb-avatar" id="sbAv">U</div>
+      <div>
+        <div class="sb-uname" id="sbName">Investor</div>
+        <div class="sb-urole" id="sbRole">investor</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ════ MAIN ════ -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-l">
+      <button class="hbg" id="hbg"><i class="fas fa-bars"></i></button>
+      <div>
+        <h1 id="pgTitle">My Dashboard</h1>
+        <p id="pgSub">Welcome back! Here's your portfolio snapshot.</p>
+      </div>
+    </div>
+    <div class="tb-r">
+      <div class="tb-search"><i class="fas fa-magnifying-glass"></i><input type="text" placeholder="Search my funds..."></div>
+      <button class="tb-icon"><i class="fas fa-bell"></i><span class="tb-dot"></span></button>
+      <button class="tb-chip"><i class="fas fa-calendar"></i> <span>This Month</span> <i class="fas fa-chevron-down" style="font-size:.65rem;"></i></button>
+      <div class="tb-user">
+        <div class="tb-uavatar" id="tbAv">U</div>
+        <span class="tb-uemail" id="tbEmail">user@stackly.in</span>
+      </div>
+      <button class="tb-logout" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i> <span>Logout</span></button>
+    </div>
+  </div>
+
+  <!-- ══════ PAGE: OVERVIEW ══════ -->
+  <section class="page active" id="page-overview">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner r">
+      <div class="wb-left">
+        <h2>Good Morning, <span id="wbName">Investor</span>! </h2>
+        <p>Your portfolio is up <strong style="color:var(--green);">+₹4,820 today</strong>. Keep investing consistently — your wealth is growing!</p>
+      </div>
+      <div class="wb-right">
+        <button class="wb-btn primary" data-goto="myholdings"><i class="fas fa-plus"></i> Invest Now</button>
+        <button class="wb-btn outline" data-goto="mysip"><i class="fas fa-rotate"></i> Manage SIPs</button>
+      </div>
+    </div>
+
+    <!-- KYC Notice -->
+    <div class="kyc-banner r">
+      <i class="fas fa-circle-info"></i>
+      <div class="kyc-text"><strong>KYC Verified ✓</strong> — Your account is fully verified. You can invest up to ₹1,50,000 per transaction.</div>
+      <div class="kyc-link">View KYC Details</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-wallet"></i>My Portfolio Value</div>
+        <div class="stat-val v">₹8,24,350</div>
+        <div class="stat-sub up"><i class="fas fa-arrow-trend-up"></i> +₹4,820 today (+0.59%)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-indian-rupee-sign"></i>Amount Invested</div>
+        <div class="stat-val">₹6,78,000</div>
+        <div class="stat-sub">SIP + Lumpsum combined</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-chart-line"></i>My Total Returns</div>
+        <div class="stat-val g">+₹1,46,350</div>
+        <div class="stat-sub up"><i class="fas fa-arrow-trend-up"></i> 21.6% XIRR since start</div>
+      </div>
+    </div>
+
+    <div class="grid2 r">
+      <!-- My Allocation -->
+      <div class="panel">
+        <div class="ph"><h3>My Asset Allocation</h3><span class="pl" data-goto="performance">Full Analysis <i class="fas fa-arrow-right"></i></span></div>
+        <div class="alloc-wrap">
+          <div class="donut-pos">
+            <svg width="170" height="170" viewBox="0 0 170 170">
+              <circle cx="85" cy="85" r="66" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="24"/>
+              <circle cx="85" cy="85" r="66" fill="none" stroke="#A78BFA" stroke-width="24" stroke-dasharray="414.7" stroke-dashoffset="0" transform="rotate(-90 85 85)"/>
+              <circle cx="85" cy="85" r="66" fill="none" stroke="#8B5CF6" stroke-width="24" stroke-dasharray="414.7" stroke-dashoffset="249" transform="rotate(-90 85 85)"/>
+              <circle cx="85" cy="85" r="66" fill="none" stroke="#6D28D9" stroke-width="24" stroke-dasharray="414.7" stroke-dashoffset="332" transform="rotate(-90 85 85)"/>
+              <circle cx="85" cy="85" r="66" fill="none" stroke="#4C1D95" stroke-width="24" stroke-dasharray="414.7" stroke-dashoffset="394" transform="rotate(-90 85 85)"/>
+            </svg>
+            <div class="donut-center"><i class="fas fa-user"></i></div>
+          </div>
+          <div class="alloc-legend">
+            <div class="al-ttl">My Total AUM</div>
+            <div class="al-val">₹8,24,350</div>
+            <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#A78BFA;"></span>Equity</span><span class="al-pct">60% · ₹4,94,610</span></div>
+            <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#8B5CF6;"></span>Debt</span><span class="al-pct">20% · ₹1,64,870</span></div>
+            <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#6D28D9;"></span>Hybrid</span><span class="al-pct">12% · ₹98,922</span></div>
+            <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#4C1D95;"></span>ELSS</span><span class="al-pct">8% · ₹65,948</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Best Performing Fund -->
+      <div class="panel">
+        <div class="ph"><h3>My Best Fund</h3></div>
+        <div style="font-size:.76rem;color:var(--text2);">Axis Midcap Fund · Direct Growth</div>
+        <div class="nav-val">₹154.18 <span style="font-size:.9rem;color:var(--green);font-weight:600;">↑ 22.1%</span></div>
+        <div class="mini-chart">
+          <svg viewBox="0 0 260 110" preserveAspectRatio="none">
+            <defs><linearGradient id="navg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A78BFA" stop-opacity=".25"/><stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/></linearGradient></defs>
+            <line x1="0" y1="18" x2="260" y2="18" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            <line x1="0" y1="54" x2="260" y2="54" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            <line x1="0" y1="90" x2="260" y2="90" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            <path d="M0,95 L35,85 L70,90 L110,60 L150,22 L195,42 L225,18 L260,35" fill="url(#navg)"/>
+            <path d="M0,95 L35,85 L70,90 L110,60 L150,22 L195,42 L225,18 L260,35" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div style="font-size:.72rem;color:var(--text3);margin-top:10px;">My invested: ₹1,20,000 &nbsp;|&nbsp; Current: ₹1,46,440 &nbsp;|&nbsp; Gain: +₹26,440</div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="qa-grid r">
+      <div class="qa" data-goto="myholdings"><div class="qa-ic"><i class="fas fa-plus"></i></div><div class="qa-lbl">Invest Now</div></div>
+      <div class="qa" data-goto="mysip"><div class="qa-ic"><i class="fas fa-rotate"></i></div><div class="qa-lbl">My SIPs</div></div>
+      <div class="qa" data-goto="explore"><div class="qa-ic"><i class="fas fa-compass"></i></div><div class="qa-lbl">Explore Funds</div></div>
+      <div class="qa" data-goto="mytransactions"><div class="qa-ic"><i class="fas fa-receipt"></i></div><div class="qa-lbl">Statements</div></div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="panel r">
+      <div class="ph"><h3>Recent Activity</h3><span class="pl" data-goto="mytransactions">View All <i class="fas fa-arrow-right"></i></span></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Fund</th><th>Type</th><th>Date</th><th>Status</th><th style="text-align:right;">Amount</th></tr></thead>
+        <tbody id="rTxBody"></tbody>
+      </table></div>
+    </div>
+
+    <!-- Market + SIP Summary -->
+    <div class="grid3 r" style="margin-top:18px;">
+      <div class="panel">
+        <div class="ph"><h3>Market Today</h3></div>
+        <div style="font-family:var(--fd);font-size:1.4rem;font-weight:800;">Nifty 50 <span style="font-size:.9rem;color:var(--green);">↑ 0.84%</span></div>
+        <div style="font-size:.74rem;color:var(--text3);margin-top:6px;">24,162 pts · Sensex 79,408</div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>My SIP This Month</h3></div>
+        <div style="font-family:var(--fd);font-size:1.4rem;font-weight:800;color:var(--violet);">₹15,000</div>
+        <div style="font-size:.74rem;color:var(--text3);margin-top:6px;">4 SIPs · Next: 1 Jul 2026</div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Tax Saved (ELSS)</h3></div>
+        <div style="font-family:var(--fd);font-size:1.4rem;font-weight:800;color:var(--green);">₹46,800</div>
+        <div style="font-size:.74rem;color:var(--text3);margin-top:6px;">Section 80C · FY 2025–26</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════ PAGE: MY TRANSACTIONS ══════ -->
+  <section class="page" id="page-mytransactions">
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-arrow-down"></i>Total Purchased</div>
+        <div class="stat-val">₹6,78,000</div>
+        <div class="stat-sub">SIP + Lumpsum orders</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-arrow-up"></i>Total Redeemed</div>
+        <div class="stat-val dn" style="color:var(--red);">₹30,000</div>
+        <div class="stat-sub">Partial withdrawal</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-coins"></i>Dividends Earned</div>
+        <div class="stat-val g">₹4,200</div>
+        <div class="stat-sub">HDFC Debt dividend plan</div>
+      </div>
+    </div>
+    <div class="panel r">
+      <div class="ph"><h3>My Transaction History</h3><span class="pl"><i class="fas fa-download"></i> Download Statement</span></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Fund</th><th>Type</th><th>Units</th><th>NAV</th><th>Date</th><th>Status</th><th style="text-align:right;">Amount</th></tr></thead>
+        <tbody id="allTxBody"></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ══════ PAGE: PERFORMANCE ══════ -->
+  <section class="page" id="page-performance">
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-percent"></i>My XIRR</div>
+        <div class="stat-val v">21.6%</div>
+        <div class="stat-sub up"><i class="fas fa-arrow-trend-up"></i> +6.1% above Nifty 50</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-scale-balanced"></i>Absolute Return</div>
+        <div class="stat-val g">+21.5%</div>
+        <div class="stat-sub up">₹1,46,350 unrealised gain</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-shield-halved"></i>Portfolio Risk</div>
+        <div class="stat-val">Moderate</div>
+        <div class="stat-sub">Based on my risk profile</div>
+      </div>
+    </div>
+
+    <div class="grid2 r">
+      <div class="panel">
+        <div class="ph"><h3>My Monthly Investment Trend</h3></div>
+        <div class="bar-wrap" id="barChart"></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h3>Fund-wise Returns</h3></div>
+        <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#A78BFA;"></span>Axis Midcap</span><span class="al-pct" style="color:var(--green);">+22.1%</span></div>
+        <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#8B5CF6;"></span>Mirae Large Cap</span><span class="al-pct" style="color:var(--green);">+17.2%</span></div>
+        <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#6D28D9;"></span>Axis ELSS</span><span class="al-pct" style="color:var(--green);">+18.4%</span></div>
+        <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#C4B5FD;"></span>HDFC Bond</span><span class="al-pct" style="color:var(--green);">+7.8%</span></div>
+        <div class="al-row"><span class="al-name"><span class="al-dot" style="background:#4C1D95;"></span>ICICI Balanced</span><span class="al-pct" style="color:var(--red);">-2.3%</span></div>
+      </div>
+    </div>
+
+    <div class="panel r">
+      <div class="ph"><h3>My Fund Performance Details</h3></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Fund</th><th>Invested</th><th>Current Value</th><th>Gain/Loss</th><th>1Y Return</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td><div class="t-name">Axis Midcap Fund</div></td><td>₹1,20,000</td><td style="color:var(--green);">₹1,46,440</td><td style="color:var(--green);">+₹26,440</td><td style="color:var(--green);">+22.1%</td><td><span class="t-badge fail">High</span></td></tr>
+          <tr><td><div class="t-name">Mirae Asset Large Cap</div></td><td>₹2,00,000</td><td style="color:var(--green);">₹2,34,400</td><td style="color:var(--green);">+₹34,400</td><td style="color:var(--green);">+17.2%</td><td><span class="t-badge pend">Moderate</span></td></tr>
+          <tr><td><div class="t-name">Axis ELSS Tax Saver</div></td><td>₹46,800</td><td style="color:var(--green);">₹55,411</td><td style="color:var(--green);">+₹8,611</td><td style="color:var(--green);">+18.4%</td><td><span class="t-badge fail">High</span></td></tr>
+          <tr><td><div class="t-name">HDFC Corporate Bond</div></td><td>₹2,00,000</td><td style="color:var(--green);">₹2,15,600</td><td style="color:var(--green);">+₹15,600</td><td style="color:var(--green);">+7.8%</td><td><span class="t-badge done">Low</span></td></tr>
+          <tr><td><div class="t-name">ICICI Balanced Adv.</div></td><td>₹1,10,000</td><td style="color:var(--red);">₹1,07,459</td><td style="color:var(--red);">-₹2,541</td><td style="color:var(--red);">-2.3%</td><td><span class="t-badge pend">Moderate</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ══════ PAGE: MY HOLDINGS ══════ -->
+  <section class="page" id="page-myholdings">
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-layer-group"></i>My Funds</div>
+        <div class="stat-val">5 Active</div>
+        <div class="stat-sub">Across 4 fund houses</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-wallet"></i>Current Value</div>
+        <div class="stat-val v">₹8,24,350</div>
+        <div class="stat-sub up">+₹1,46,350 unrealised gain</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-calendar-day"></i>Today's P&amp;L</div>
+        <div class="stat-val g">+₹4,820</div>
+        <div class="stat-sub up">+0.59% as of today</div>
+      </div>
+    </div>
+    <div class="panel r">
+      <div class="ph"><h3>My Fund Holdings</h3><span class="pl" data-goto="explore"><i class="fas fa-plus"></i> Add New Fund</span></div>
+      <div id="holdingsList"></div>
+    </div>
+  </section>
+
+  <!-- ══════ PAGE: MY SIPs & GOALS ══════ -->
+  <section class="page" id="page-mysip">
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-rotate"></i>My Monthly SIP</div>
+        <div class="stat-val v">₹15,000</div>
+        <div class="stat-sub">4 active SIPs</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-bullseye"></i>Goal Progress</div>
+        <div class="stat-val">62%</div>
+        <div class="stat-sub up">Retirement goal on track</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-calendar-check"></i>Next SIP Date</div>
+        <div class="stat-val">1 Jul '26</div>
+        <div class="stat-sub">HDFC Bank auto-debit</div>
+      </div>
+    </div>
+
+    <div class="panel r">
+      <div class="ph"><h3>My Active SIPs</h3><span class="pl"><i class="fas fa-plus"></i> Start New SIP</span></div>
+      <div id="sipList"></div>
+    </div>
+
+    <div class="panel r" style="margin-top:18px;">
+      <div class="ph"><h3>My Financial Goals</h3><span class="pl"><i class="fas fa-plus"></i> Add Goal</span></div>
+      <div class="prog-item">
+        <div class="prog-head"><span class="prog-name"><i class="fas fa-umbrella" style="color:var(--violet);margin-right:6px;"></i>Retirement Corpus (₹50L target)</span><span class="prog-meta">₹31,00,000 saved · 2040 deadline</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:62%;"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-head"><span class="prog-name"><i class="fas fa-graduation-cap" style="color:var(--amber);margin-right:6px;"></i>Child Education (₹15L target)</span><span class="prog-meta">₹8,10,000 saved · 2032 deadline</span></div>
+        <div class="prog-track"><div class="prog-fill warn" style="width:54%;"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-head"><span class="prog-name"><i class="fas fa-house" style="color:var(--green);margin-right:6px;"></i>Home Down Payment (₹10L target)</span><span class="prog-meta">₹10,20,000 saved · Completed! 🎉</span></div>
+        <div class="prog-track"><div class="prog-fill done-clr" style="width:100%;"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-head"><span class="prog-name"><i class="fas fa-shield-halved" style="color:var(--violet);margin-right:6px;"></i>Emergency Fund (₹3L target)</span><span class="prog-meta">₹1,60,000 saved · Ongoing</span></div>
+        <div class="prog-track"><div class="prog-fill warn" style="width:53%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ PAGE: EXPLORE FUNDS ══════ -->
+  <section class="page" id="page-explore">
+    <div class="stat-row r">
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-fire"></i>Top Performer (1Y)</div>
+        <div class="stat-val v">+34.2%</div>
+        <div class="stat-sub">Nippon India Small Cap</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-shield-halved"></i>Safest Option</div>
+        <div class="stat-val">+7.8%</div>
+        <div class="stat-sub">HDFC Liquid Fund (Debt)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl"><i class="fas fa-leaf"></i>Tax Saving</div>
+        <div class="stat-val g">+18.4%</div>
+        <div class="stat-sub">Axis ELSS · Sec 80C eligible</div>
+      </div>
+    </div>
+
+    <!-- Recommended Funds -->
+    <div class="panel r">
+      <div class="ph"><h3>Recommended For You</h3><span class="pl">Based on your risk profile</span></div>
+      <div id="exploreFunds"></div>
+    </div>
+
+    <!-- Advisor Insights -->
+    <div class="ph r" style="margin-top:18px;"><h3 style="font-family:var(--fd);font-size:1.1rem;font-weight:700;">Advisor Insights</h3></div>
+    <div class="grid3 r">
+      <div class="insight-card">
+        <div class="insight-ic"><i class="fas fa-lightbulb"></i></div>
+        <div><div class="insight-title">Step Up Your SIP</div><div class="insight-desc">Increasing your SIP by 10% annually can grow your corpus by 2x over 15 years. Try our step-up SIP feature.</div></div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-ic"><i class="fas fa-piggy-bank"></i></div>
+        <div><div class="insight-title">Tax Deadline Approaching</div><div class="insight-desc">Invest up to ₹1,50,000 in ELSS before 31 Mar 2026 to claim your full Section 80C deduction.</div></div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-ic"><i class="fas fa-rotate-right"></i></div>
+        <div><div class="insight-title">Rebalance Portfolio</div><div class="insight-desc">Your equity allocation has grown to 65%. Consider adding ₹20,000 to debt funds to maintain your target.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ PAGE: SETTINGS ══════ -->
+  <section class="page" id="page-settings">
+    <div class="panel r set-card">
+      <div class="ph"><h3>My Profile</h3></div>
+      <div class="set-row">
+        <div class="set-field"><label>Full Name</label><input type="text" id="setName" value="Investor User"></div>
+        <div class="set-field"><label>Email Address</label><input type="text" id="setEmail" value="user@stackly.in"></div>
+      </div>
+      <div class="set-row">
+        <div class="set-field"><label>Phone Number</label><input type="text" value="+91 98765 43210"></div>
+        <div class="set-field"><label>PAN Number</label><input type="text" value="WXYZ9876A"></div>
+      </div>
+      <div class="set-row">
+        <div class="set-field"><label>Risk Profile</label>
+          <select><option>Moderate</option><option>Aggressive</option><option>Conservative</option></select>
+        </div>
+        <div class="set-field"><label>Investment Goal</label>
+          <select><option>Retirement</option><option>Child Education</option><option>Home Purchase</option><option>Wealth Creation</option></select>
+        </div>
+      </div>
+      <button class="btn-v">Save Changes <i class="fas fa-check"></i></button>
+    </div>
+
+    <div class="panel r set-card" style="margin-top:18px;">
+      <div class="ph"><h3>Notifications &amp; Security</h3></div>
+      <div class="tog-row"><div><div class="tog-name">SIP Debit Reminders</div><div class="tog-desc">Alert me 2 days before each SIP deduction</div></div><label class="switch"><input type="checkbox" checked><span class="sw-sl"></span></label></div>
+      <div class="tog-row"><div><div class="tog-name">NAV &amp; Market Alerts</div><div class="tog-desc">Notify me when my fund NAV changes by 2%+</div></div><label class="switch"><input type="checkbox" checked><span class="sw-sl"></span></label></div>
+      <div class="tog-row"><div><div class="tog-name">Monthly Portfolio Report</div><div class="tog-desc">Email me a PDF summary every month</div></div><label class="switch"><input type="checkbox"><span class="sw-sl"></span></label></div>
+      <div class="tog-row"><div><div class="tog-name">Advisor Recommendations</div><div class="tog-desc">Receive personalised fund suggestions from my advisor</div></div><label class="switch"><input type="checkbox" checked><span class="sw-sl"></span></label></div>
+      <div class="tog-row"><div><div class="tog-name">Two-Factor Authentication</div><div class="tog-desc">Secure my login with OTP verification</div></div><label class="switch"><input type="checkbox" checked><span class="sw-sl"></span></label></div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+/* ── SESSION GUARD ── */
+document.addEventListener('DOMContentLoaded', () => {
+  const email = sessionStorage.getItem('stackly_user_email');
+  if (!email) { window.location.href = './login.html'; return; }
+});
+
+const email = sessionStorage.getItem('stackly_user_email') || 'user@stackly.in';
+const role  = sessionStorage.getItem('stackly_user_role')  || 'user';
+const uname = sessionStorage.getItem('stackly_user_name')  || email.split('@')[0];
+const init  = uname.trim().charAt(0).toUpperCase();
+const dispName = uname.charAt(0).toUpperCase() + uname.slice(1);
+
+['sbAv','tbAv'].forEach(id => document.getElementById(id).textContent = init);
+document.getElementById('sbName').textContent = dispName;
+document.getElementById('sbRole').textContent = 'Investor';
+document.getElementById('tbEmail').textContent = email;
+document.getElementById('setEmail').value = email;
+document.getElementById('setName').value = dispName;
+document.getElementById('wbName').textContent = dispName.split(' ')[0];
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.clear(); window.location.href = './login.html';
+});
+
+/* ── PAGE NAV ── */
+const META = {
+  overview:        { title:'My Dashboard',       sub:'Welcome back! Here\'s your portfolio snapshot.' },
+  mytransactions:  { title:'My Transactions',    sub:'Your complete buy, sell, SIP and dividend history.' },
+  performance:     { title:'My Performance',     sub:'Detailed returns and risk analysis.' },
+  myholdings:      { title:'My Holdings',        sub:'Current NAV, units and value of your funds.' },
+  mysip:           { title:'My SIPs & Goals',    sub:'Track your SIPs and financial goals.' },
+  explore:         { title:'Explore Funds',      sub:'Discover funds recommended for your profile.' },
+  settings:        { title:'Settings',           sub:'Update your profile, goals and preferences.' },
+};
+function goTo(key) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+  const pg = document.getElementById('page-' + key);
+  if (!pg) return;
+  pg.classList.add('active');
+  const btn = document.querySelector(`.sb-btn[data-page="${key}"]`);
+  if (btn) btn.classList.add('active');
+  const m = META[key] || {};
+  document.getElementById('pgTitle').textContent = m.title || key;
+  document.getElementById('pgSub').textContent = m.sub || '';
+  document.querySelectorAll(`#page-${key} .r`).forEach((el,i) => {
+    el.classList.remove('vis');
+    setTimeout(() => el.classList.add('vis'), 50 * i);
+  });
+  if (key === 'performance') buildBarChart();
+  closeSidebar();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+document.querySelectorAll('.sb-btn[data-page]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(el => el.addEventListener('click', () => goTo(el.dataset.goto)));
+
+/* ── MOBILE SIDEBAR ── */
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow='hidden'; }
+function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow=''; }
+document.getElementById('hbg').addEventListener('click', openSidebar);
+document.getElementById('sbClose').addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+/* ── TRANSACTIONS ── */
+const TX = [
+  { fund:'Axis Midcap Fund',       type:'SIP Purchase', units:'32.4', nav:'₹154.18', date:'28 Jun 2026', status:'done', amt:5000 },
+  { fund:'Mirae Asset Large Cap',  type:'SIP Purchase', units:'55.9', nav:'₹89.42',  date:'25 Jun 2026', status:'done', amt:5000 },
+  { fund:'HDFC Corporate Bond',    type:'Dividend',     units:'—',    nav:'₹38.60',  date:'22 Jun 2026', status:'done', amt:1200 },
+  { fund:'Axis ELSS Tax Saver',    type:'SIP Purchase', units:'22.3', nav:'₹112.30', date:'20 Jun 2026', status:'pend', amt:2500 },
+  { fund:'ICICI Balanced Adv.',    type:'Partial Redeem',units:'44.0',nav:'₹68.40',  date:'15 Jun 2026', status:'done', amt:-3010},
+  { fund:'Axis Midcap Fund',       type:'Lumpsum Buy',  units:'64.8', nav:'₹154.18', date:'10 Jun 2026', status:'done', amt:10000},
+  { fund:'HDFC Corporate Bond',    type:'SIP Purchase', units:'130.0',nav:'₹38.50',  date:'7 Jun 2026',  status:'done', amt:5000 },
+  { fund:'Mirae Asset Large Cap',  type:'SIP Purchase', units:'55.9', nav:'₹89.42',  date:'1 Jun 2026',  status:'done', amt:5000 },
+];
+const ICONS = { 'SIP Purchase':'fa-rotate', 'Lumpsum Buy':'fa-plus', 'Dividend':'fa-coins', 'Partial Redeem':'fa-minus' };
+
+function txSimple(t) {
+  const pos = t.amt >= 0;
+  return `<tr>
+    <td><div class="t-merchant"><div class="t-ic" style="background:rgba(167,139,250,.15);color:var(--violet);"><i class="fas ${ICONS[t.type]||'fa-circle'}"></i></div><div class="t-name">${t.fund}</div></div></td>
+    <td><span class="t-cat">${t.type}</span></td>
+    <td><span class="t-cat">${t.date}</span></td>
+    <td><span class="t-badge ${t.status}"><i class="fas fa-circle" style="font-size:4px;"></i> ${t.status==='done'?'Completed':t.status==='pend'?'Pending':'Failed'}</span></td>
+    <td class="t-amt ${pos?'pos':'neg'}">${pos?'+':'-'}₹${Math.abs(t.amt).toLocaleString('en-IN')}</td>
+  </tr>`;
+}
+function txFull(t) {
+  const pos = t.amt >= 0;
+  return `<tr>
+    <td><div class="t-merchant"><div class="t-ic" style="background:rgba(167,139,250,.15);color:var(--violet);"><i class="fas ${ICONS[t.type]||'fa-circle'}"></i></div><div class="t-name">${t.fund}</div></div></td>
+    <td><span class="t-cat">${t.type}</span></td>
+    <td><span class="t-cat">${t.units}</span></td>
+    <td><span class="t-cat">${t.nav}</span></td>
+    <td><span class="t-cat">${t.date}</span></td>
+    <td><span class="t-badge ${t.status}"><i class="fas fa-circle" style="font-size:4px;"></i> ${t.status==='done'?'Completed':t.status==='pend'?'Pending':'Failed'}</span></td>
+    <td class="t-amt ${pos?'pos':'neg'}">${pos?'+':'-'}₹${Math.abs(t.amt).toLocaleString('en-IN')}</td>
+  </tr>`;
+}
+document.getElementById('rTxBody').innerHTML = TX.slice(0,4).map(txSimple).join('');
+document.getElementById('allTxBody').innerHTML = TX.map(txFull).join('');
+
+/* ── MY HOLDINGS ── */
+const HOLDINGS = [
+  { name:'Axis Midcap Fund',      cat:'Equity · Mid Cap · Direct Growth',  init:'AM', color:'#A78BFA', nav:'₹154.18', units:'129.6', invested:'₹1,20,000', current:'₹1,46,440', xirr:'+22.1%', up:true },
+  { name:'Mirae Asset Large Cap', cat:'Equity · Large Cap · Direct Growth', init:'ML', color:'#8B5CF6', nav:'₹89.42',  units:'223.7', invested:'₹2,00,000', current:'₹2,34,400', xirr:'+17.2%', up:true },
+  { name:'Axis ELSS Tax Saver',   cat:'Equity · ELSS · Sec 80C',           init:'AE', color:'#7C3AED', nav:'₹112.30', units:'89.2',  invested:'₹46,800',   current:'₹55,411',   xirr:'+18.4%', up:true },
+  { name:'HDFC Corporate Bond',   cat:'Debt · Corporate Bond · Direct',     init:'HC', color:'#6D28D9', nav:'₹38.60',  units:'5181.8',invested:'₹2,00,000', current:'₹2,15,600', xirr:'+7.8%',  up:true },
+  { name:'ICICI Balanced Adv.',   cat:'Hybrid · Balanced Advantage',        init:'IB', color:'#C4B5FD', nav:'₹68.40',  units:'1570.0',invested:'₹1,10,000', current:'₹1,07,459', xirr:'-2.3%',  up:false },
+];
+document.getElementById('holdingsList').innerHTML = HOLDINGS.map(h => `
+  <div class="fund-row">
+    <div class="fund-l">
+      <div class="fund-ic" style="background:${h.color};">${h.init}</div>
+      <div><div class="fund-name">${h.name}</div><div class="fund-cat">${h.cat}</div></div>
+    </div>
+    <div class="fund-mid">
+      <div class="fund-mid-col"><div class="fm-lbl">Units</div><div class="fm-val">${h.units}</div></div>
+      <div class="fund-mid-col"><div class="fm-lbl">NAV</div><div class="fm-val">${h.nav}</div></div>
+      <div class="fund-mid-col"><div class="fm-lbl">Invested</div><div class="fm-val">${h.invested}</div></div>
+    </div>
+    <div class="fund-r">
+      <div class="fund-val">${h.current}</div>
+      <div class="fund-chg" style="color:${h.up?'var(--green)':'var(--red)'}"><i class="fas fa-arrow-${h.up?'up':'down'}"></i> ${h.xirr} XIRR</div>
+    </div>
+  </div>`).join('');
+
+/* ── MY SIPS ── */
+const SIPS = [
+  { fund:'Axis Midcap Fund',      amt:'₹5,000',  date:'1st',  status:'Active', next:'1 Jul 2026',  color:'#A78BFA' },
+  { fund:'Mirae Asset Large Cap', amt:'₹5,000',  date:'5th',  status:'Active', next:'5 Jul 2026',  color:'#8B5CF6' },
+  { fund:'Axis ELSS Tax Saver',   amt:'₹2,500',  date:'10th', status:'Active', next:'10 Jul 2026', color:'#7C3AED' },
+  { fund:'HDFC Corporate Bond',   amt:'₹2,500',  date:'15th', status:'Paused', next:'Paused',       color:'#6D28D9' },
+];
+document.getElementById('sipList').innerHTML = SIPS.map(s => `
+  <div class="fund-row">
+    <div class="fund-l">
+      <div class="fund-ic" style="background:${s.color};">${s.fund.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
+      <div><div class="fund-name">${s.fund}</div><div class="fund-cat">SIP on ${s.date} every month</div></div>
+    </div>
+    <div class="fund-r" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;text-align:left;">
+      <div><div class="fm-lbl">Monthly</div><div class="fm-val" style="color:var(--violet);">${s.amt}</div></div>
+      <div><div class="fm-lbl">Next Debit</div><div class="fm-val">${s.next}</div></div>
+      <span class="t-badge ${s.status==='Active'?'done':'pend'}">${s.status}</span>
+    </div>
+  </div>`).join('');
+
+/* ── EXPLORE FUNDS ── */
+const EXPLORE = [
+  { name:'Nippon India Small Cap', cat:'Equity · Small Cap · High Risk',    init:'NS', color:'#A78BFA', nav:'₹47.55', ret:'+34.2% (1Y)', tag:'Top Performer' },
+  { name:'Parag Parikh Flexi Cap', cat:'Equity · Flexi Cap · Moderate',     init:'PP', color:'#8B5CF6', nav:'₹71.20', ret:'19.8% (1Y)',  tag:'Consistent' },
+  { name:'SBI Bluechip Fund',      cat:'Equity · Large Cap · Moderate',     init:'SB', color:'#6D28D9', nav:'₹56.70', ret:'+14.6% (1Y)', tag:'Stable' },
+  { name:'Kotak Equity Hybrid',    cat:'Hybrid · Balanced · Moderate',      init:'KE', color:'#7C3AED', nav:'₹96.20', ret:'+13.4% (1Y)', tag:'Recommended' },
+];
+document.getElementById('exploreFunds').innerHTML = EXPLORE.map(f => `
+  <div class="fund-row">
+    <div class="fund-l">
+      <div class="fund-ic" style="background:${f.color};">${f.init}</div>
+      <div><div class="fund-name">${f.name}</div><div class="fund-cat">${f.cat}</div></div>
+    </div>
+    <div class="fund-r" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;text-align:left;">
+      <div><div class="fm-lbl">NAV</div><div class="fm-val">${f.nav}</div></div>
+      <div><div class="fm-lbl">1Y Return</div><div class="fm-val" style="color:var(--green);">${f.ret}</div></div>
+      <span class="t-badge done">${f.tag}</span>
+    </div>
+  </div>`).join('');
+
+/* ── BAR CHART ── */
+function buildBarChart() {
+  const el = document.getElementById('barChart');
+  if (!el || el.dataset.built) return;
+  const months = [{l:'Jan',v:50},{l:'Feb',v:60},{l:'Mar',v:55},{l:'Apr',v:72},{l:'May',v:65},{l:'Jun',v:85},{l:'Jul',v:60}];
+  el.innerHTML = months.map((m,i) => `<div class="bar-col"><div class="bar-fill${i===5?' ':' alt'}" style="height:0" data-h="${m.v}%"></div><div class="bar-lbl">${m.l}</div></div>`).join('');
+  el.dataset.built = '1';
+  requestAnimationFrame(() => el.querySelectorAll('.bar-fill').forEach(b => b.style.height = b.dataset.h));
+}
+
+/* ── REVEAL ── */
+const rio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); rio.unobserve(e.target); } });
+}, { threshold:.08 });
+document.querySelectorAll('.r').forEach(el => rio.observe(el));
+</script>
+</body>
+</html>

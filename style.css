@@ -322,8 +322,8 @@ img {
 .hero-bg {
    position: absolute;
    inset: 0;
-   background: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
-   filter: brightness(.25);
+   background: url('./src/mutual\ home\ img/image10-compressed.webp') center/cover no-repeat;
+   filter: brightness(100%);
 }
 
 .hero-overlay {
@@ -2119,4 +2119,39 @@ footer {
    .footer-brand p {
       font-size: .82rem;
    }
+}
+
+
+/* Navigation Links */
+nav ul li a {
+    position: relative;
+    color:white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 16px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+nav ul li a:hover {
+    color:var(--gold);
+}
+
+/* Active Link */
+nav ul li a.active {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Animated Underline */
+nav ul li a.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 50px;
 }

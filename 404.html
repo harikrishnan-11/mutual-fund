@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 — Page Not Found | Stackly</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══════════════════════════════════════════
+       404 PAGE — SCOPED STYLES
+    ══════════════════════════════════════════ */
+    :root {
+      --navy:    #0A0A0F;
+      --midnight:#12121A;
+      --gold:    #A78BFA;
+      --gold-lt: #C4B5FD;
+      --slate:   #9CA3AF;
+      --white:   #FFFFFF;
+      --card-bg: #0E0E16;
+      --radius:  12px;
+      --transition: 0.4s cubic-bezier(.4,0,.2,1);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; min-height: 100vh; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--midnight); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    /* ══ NAVBAR (shared) ══ */
+    #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 18px 0; transition: var(--transition); }
+    #navbar.scrolled { background: rgba(10,10,15,.95); backdrop-filter: blur(16px); padding: 12px 0; border-bottom: 1px solid rgba(167,139,250,.15); }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .logo i { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--slate); font-size: .9rem; font-weight: 500; text-decoration: none; transition: color .3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width .3s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { margin-left: 12px; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 9px; background: var(--gold); color: var(--navy); padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: var(--transition); border: none; cursor: pointer; }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(167,139,250,.3); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: var(--gold); padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: var(--transition); border: 2px solid var(--gold); cursor: pointer; }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--midnight); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--white); font-size: 1.4rem; font-family: 'Playfair Display', serif; text-decoration: none; transition: color .3s; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ══ 404 MAIN SECTION ══ */
+    #e404 {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 60px;
+    }
+
+    /* ── BACKGROUND ── */
+    .e404-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+      filter: brightness(.1);
+    }
+    .e404-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(124,58,237,.08) 0%, rgba(10,10,15,.98) 70%);
+    }
+
+    /* ── FLOATING ORB BACKGROUNDS ── */
+    .e404-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .e404-orb-1 { width: 380px; height: 380px; background: rgba(124,58,237,.15); top: 10%; right: 5%; animation-delay: 0s; }
+    .e404-orb-2 { width: 260px; height: 260px; background: rgba(167,139,250,.1); bottom: 15%; left: 5%; animation-delay: 3s; }
+    .e404-orb-3 { width: 180px; height: 180px; background: rgba(167,139,250,.07); top: 60%; right: 15%; animation-delay: 5s; }
+
+    @keyframes orbFloat {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* ── GRID LINES ── */
+    .e404-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(167,139,250,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167,139,250,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ── CONTENT ── */
+    .e404-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 700px;
+      padding: 0 24px;
+    }
+
+    /* ── BIG 404 NUMBER ── */
+    .e404-number-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 32px;
+    }
+
+    .e404-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(7rem, 20vw, 14rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, rgba(167,139,250,.9) 0%, rgba(124,58,237,.6) 50%, rgba(167,139,250,.3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      animation: numberPulse 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes numberPulse {
+      0%,100% { filter: drop-shadow(0 0 30px rgba(167,139,250,.3)); }
+      50% { filter: drop-shadow(0 0 60px rgba(167,139,250,.6)); }
+    }
+
+    /* glitch layers */
+    .e404-number::before,
+    .e404-number::after {
+      content: '404';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(167,139,250,.9) 0%, rgba(124,58,237,.6) 50%, rgba(167,139,250,.3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .e404-number::before {
+      left: 3px;
+      animation: glitchA 6s infinite;
+      clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    }
+    .e404-number::after {
+      left: -3px;
+      animation: glitchB 6s infinite;
+      clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+    }
+
+    @keyframes glitchA {
+      0%,90%,100% { transform: none; opacity: 0; }
+      91% { transform: translateX(-4px); opacity: .8; }
+      93% { transform: translateX(4px); opacity: .4; }
+      95% { transform: none; opacity: 0; }
+    }
+    @keyframes glitchB {
+      0%,85%,100% { transform: none; opacity: 0; }
+      86% { transform: translateX(4px); opacity: .6; }
+      88% { transform: translateX(-4px); opacity: .3; }
+      90% { transform: none; opacity: 0; }
+    }
+
+    /* scan line on the number */
+    .e404-scanline {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .e404-scanline::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 3px;
+      background: rgba(167,139,250,.35);
+      animation: scanDown 2.5s linear infinite;
+    }
+    @keyframes scanDown {
+      0% { top: -5%; }
+      100% { top: 105%; }
+    }
+
+    /* ── BADGE ── */
+    .e404-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(167,139,250,.1);
+      border: 1px solid rgba(167,139,250,.3);
+      color: var(--gold);
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      margin-bottom: 24px;
+      animation: badgeFade 1s ease .3s both;
+    }
+    @keyframes badgeFade { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+    /* ── HEADING ── */
+    .e404-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      animation: slideUp .7s ease .5s both;
+    }
+    .e404-title span { color: var(--gold); }
+
+    .e404-sub {
+      color: var(--slate);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto 36px;
+      animation: slideUp .7s ease .65s both;
+    }
+
+    @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+
+    /* ── CTA BUTTONS ── */
+    .e404-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+      animation: slideUp .7s ease .8s both;
+    }
+
+    /* ── QUICK LINKS ── */
+    .e404-links-label {
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 20px;
+      animation: slideUp .7s ease .9s both;
+    }
+
+    .e404-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      animation: slideUp .7s ease 1s both;
+    }
+
+    .e404-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.07);
+      color: var(--slate);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: .84rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .e404-link i { color: var(--gold); font-size: .8rem; }
+    .e404-link:hover {
+      border-color: rgba(167,139,250,.35);
+      color: var(--white);
+      background: rgba(167,139,250,.08);
+      transform: translateY(-3px);
+    }
+
+    /* ── ANIMATED RINGS (like CTA section) ── */
+    .e404-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(167,139,250,.06);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: ringPulse 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .e404-ring:nth-child(1) { width: 420px; height: 420px; }
+    .e404-ring:nth-child(2) { width: 640px; height: 640px; animation-delay: 1s; }
+    .e404-ring:nth-child(3) { width: 860px; height: 860px; animation-delay: 2s; }
+
+    @keyframes ringPulse {
+      0%,100% { opacity: .25; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: .08; transform: translate(-50%,-50%) scale(1.03); }
+    }
+
+    /* ── FLOATING PARTICLES ── */
+    .e404-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .e404-particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleDrift var(--dur, 8s) var(--delay, 0s) infinite ease-in-out;
+    }
+    @keyframes particleDrift {
+      0% { opacity: 0; transform: translateY(0) scale(0); }
+      10% { opacity: .6; transform: translateY(-20px) scale(1); }
+      90% { opacity: .2; }
+      100% { opacity: 0; transform: translateY(-200px) scale(.5); }
+    }
+
+    /* ══ FOOTER ══ */
+    footer { background: #060608; padding: 80px 0 0; overflow: hidden; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+    .footer-brand p { color: var(--slate); font-size: .88rem; line-height: 1.75; margin: 16px 0 24px; }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; color: var(--slate); text-decoration: none; transition: var(--transition); }
+    .footer-social a:hover { background: var(--gold); color: var(--navy); }
+    .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); margin-bottom: 22px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { color: var(--slate); font-size: .87rem; text-decoration: none; transition: color .3s; display: flex; align-items: center; gap: 7px; }
+    .footer-col ul a::before { content: '\f054'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: .55rem; color: var(--gold); }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding: 22px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: .82rem; color: var(--slate); }
+    .footer-bottom span { color: var(--gold); }
+    .footer-tags { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-tags a { font-size: .78rem; color: var(--slate); text-decoration: none; transition: color .3s; }
+    .footer-tags a:hover { color: var(--gold); }
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .e404-orb-1 { width: 240px; height: 240px; }
+      .e404-orb-2 { width: 160px; height: 160px; }
+      .e404-orb-3 { display: none; }
+      .e404-ring:nth-child(3) { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media(max-width:480px) {
+      .e404-btns { flex-direction: column; align-items: center; }
+      .e404-btns a { width: 100%; justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width:340px) {
+      .e404-title { font-size: 1.4rem; }
+      .e404-sub { font-size: .9rem; }
+      .e404-link { padding: 9px 16px; font-size: .78rem; }
+      .e404-orb-1, .e404-orb-2 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="./home.html" class="logo"></i><img src="./src/logo.webp" alt=""></a>
+    <ul class="nav-links">
+      <li><a href="./home.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./service.html">Services</a></li>
+      <li><a href="./blog.html">blog</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <a href="./login.html" class="btn-gold nav-cta" style="padding:11px 24px;font-size:.86rem;">Login <i class="fas fa-arrow-right"></i></a>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./home.html">Home</a>
+  <a href="./about.html">About</a>
+  <a href="./service.html">Services</a>
+  <a href="./blog.html">blog</a>
+  <a href="./contact.html">Contact</a>
+  <a href="./login.html" class="btn-gold mob-link" style="margin-top:12px;">Login</a>
+</div>
+
+<!-- ══ 404 SECTION ══ -->
+<section id="e404">
+  <div class="e404-bg"></div>
+  <div class="e404-overlay"></div>
+  <div class="e404-grid-lines"></div>
+
+  <!-- Ambient orbs -->
+  <div class="e404-orb e404-orb-1"></div>
+  <div class="e404-orb e404-orb-2"></div>
+  <div class="e404-orb e404-orb-3"></div>
+
+  <!-- Pulsing rings -->
+  <div class="e404-ring"></div>
+  <div class="e404-ring"></div>
+  <div class="e404-ring"></div>
+
+  <!-- Particles -->
+  <div class="e404-particles" id="particles"></div>
+
+  <div class="e404-inner">
+
+    <!-- Big 404 -->
+    <div class="e404-number-wrap">
+      <div class="e404-scanline"></div>
+      <div class="e404-number">404</div>
+    </div>
+
+    <div class="e404-badge">
+      <i class="fas fa-triangle-exclamation"></i>
+      PAGE NOT FOUND
+    </div>
+
+    <h1 class="e404-title">Looks Like You've <span>Wandered Off</span> the Map</h1>
+    <p class="e404-sub">The page you're looking for doesn't exist, may have been moved, or the URL might be misspelled. Don't worry — let's get you back on track.</p>
+
+    <div class="e404-btns">
+      <a href="./home.html" class="btn-gold">Back to Home <i class="fas fa-house"></i></a>
+      <a href="./contact.html" class="btn-outline">Contact Support <i class="fas fa-headset"></i></a>
+    </div>
+
+    <p class="e404-links-label">Or jump to a page</p>
+    <div class="e404-links">
+      <a href="./about.html" class="e404-link"><i class="fas fa-building-columns"></i> About Us</a>
+      <a href="./service.html" class="e404-link"><i class="fas fa-chart-pie"></i> Services</a>
+      <a href="./blog.html" class="e404-link"><i class="fas fa-feather-alt"></i> Blog</a>
+      <a href="./contact.html" class="e404-link"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="./login.html" class="e404-link"><i class="fas fa-right-to-bracket"></i> Login</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+    <a href="./home.html" class="logo"></i><img src="./src/logo.webp" alt=""></a>
+        <p>Stackly Advisory is a SEBI-registered investment advisor (INA000XXXXX) committed to unbiased, research-backed mutual fund guidance for every investor.</p>
+        <div class="footer-social">
+          <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
+          <a href="./404.html"><i class="fab fa-twitter"></i></a>
+          <a href="./404.html"><i class="fab fa-youtube"></i></a>
+          <a href="./404.html"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="./404.html">Portfolio Advisory</a></li>
+          <li><a href="./404.html">SIP Planning</a></li>
+          <li><a href="./404.html">Retirement Planning</a></li>
+          <li><a href="./404.html">Tax Saving ELSS</a></li>
+          <li><a href="./404.html">Corporate Treasury</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./service.html">Service</a></li>
+          <li><a href="./blog.html">blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="./404.html">SEBI Registration</a></li>
+          <li><a href="./404.html">Disclaimer</a></li>
+          <li><a href="./404.html">Privacy Policy</a></li>
+          <li><a href="./404.html">Terms of Service</a></li>
+          <li><a href="./404.html">Grievance Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>Stackly Advisory Pvt. Ltd.</span> All rights reserved. Mutual fund investments are subject to market risks.</p>
+      <div class="footer-tags">
+        <a href="./404.html">Sitemap</a>
+        <a href="./404.html">Accessibility</a>
+        <a href="./404.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── HAMBURGER ── */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link').forEach(l => {
+    l.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── NAVBAR SCROLL ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ── GENERATE PARTICLES ── */
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'e404-particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${30 + Math.random() * 60}%;
+      --dur: ${6 + Math.random() * 8}s;
+      --delay: ${Math.random() * 6}s;
+      width: ${2 + Math.random() * 3}px;
+      height: ${2 + Math.random() * 3}px;
+      opacity: 0;
+    `;
+    container.appendChild(p);
+  }
+
+  /* ── INTERACTIVE: 404 follows cursor slightly ── */
+  const num = document.querySelector('.e404-number');
+  document.addEventListener('mousemove', (e) => {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;
+    const dy = (e.clientY - cy) / cy;
+    num.style.transform = `translate(${dx * 8}px, ${dy * 6}px)`;
+  });
+
+  /* ── COUNTDOWN (auto-redirect optional) ── */
+  // Uncomment below if you want an auto-redirect countdown
+  // let secs = 10;
+  // const countdown = setInterval(() => {
+  //   secs--;
+  //   if (secs <= 0) { clearInterval(countdown); window.location.href = './home.html'; }
+  // }, 1000);
+
+  /* ── REDUCE MOTION ── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.e404-ring, .e404-orb, .e404-particle').forEach(el => {
+      el.style.animation = 'none';
+    });
+    document.removeEventListener('mousemove', () => {});
+  }
+</script>
+</body>
+</html>

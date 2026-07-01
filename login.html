@@ -15,7 +15,7 @@
 <!-- ══ NAVBAR ══ -->
 <nav id="navbar">
   <div class="container nav-inner">
-    <a href="./home.html" class="logo"><i class="fas fa-chart-line"></i> Stackly</a>
+<a href="./home.html" class="logo"></i><img src="./src/logo.webp" alt=""></a>
     <ul class="nav-links">
       <li><a href="./home.html">Home</a></li>
       <li><a href="./about.html">About</a></li>
@@ -128,7 +128,7 @@
               <label for="loginEmail">Email Address <span class="req">*</span></label>
               <div class="auth-input-wrap">
                 <i class="fas fa-envelope field-icon"></i>
-                <input type="text" id="loginEmail" name="email" placeholder="you@example.com" autocomplete="off">
+                <input type="text" id="loginEmail" name="email" id="userEmail" placeholder="you@example.com" autocomplete="off">
               </div>
               <div class="auth-error-msg"><i class="fas fa-circle-exclamation"></i><span>Enter a valid email address.</span></div>
             </div>
@@ -167,7 +167,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="./home.html" class="logo" style="font-size:1.3rem;"><i class="fas fa-chart-line"></i> Stackly</a>
+<a href="./home.html" class="logo"></i><img src="./src/logo.webp" alt=""></a>
         <p>Stackly Advisory is a SEBI-registered investment advisor (INA000XXXXX) committed to unbiased, research-backed mutual fund guidance for every investor.</p>
         <div class="footer-social">
           <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
@@ -391,12 +391,8 @@
     }, 1200);
   });
 
-  /* ── pre-fill remembered email ──────── */
-  const rememberedEmail = localStorage.getItem('stackly_remember_email');
-  if (rememberedEmail) {
-    document.getElementById('loginEmail').value = rememberedEmail;
-    document.getElementById('rememberMe').checked = true;
-  }
+
+ 
 </script>
 </body>
 </html>
