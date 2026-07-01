@@ -1488,7 +1488,7 @@ img {
 .cta-bg {
    position: absolute;
    inset: 0;
-   background: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1400&auto=format&fit=crop&q=70') center/cover;
+   background: url('./src/mutual\ home\ img/image11-compressed.webp') center/cover;
    filter: brightness(.12);
 }
 
