@@ -598,8 +598,8 @@ img {
 
 .exp-badge {
    position: absolute;
-   top: 50%;
-   left: 55%;
+   top: 15%;
+   right: 65%;
    transform: translate(-50%, -50%);
    background: var(--gold);
    color: var(--navy);
