@@ -291,9 +291,7 @@ img {
    gap: 32px;
 }
 
-.mobile-menu.open {
-   display: flex;
-}
+
 
 .mobile-menu a {
    color: var(--white);
@@ -1817,7 +1815,9 @@ footer {
    .container {
       padding: 0 20px;
    }
-
+   .mobile-menu.open {
+   display: flex;
+}
    .nav-links,
    .nav-cta {
       display: none;

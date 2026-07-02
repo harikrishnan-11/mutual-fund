@@ -202,7 +202,7 @@ body{max-width:100%;overflow-x:hidden;}
   .timeline-content{padding:18px 16px;}
   .timeline-content h3{font-size:.95rem;}
   .abt-team-img-wrap img{height:220px;}
-  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:100%;justify-content:center;}
+  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:fit-content;justify-content:center;}
   .breadcrumb{font-size:.74rem;flex-wrap:wrap;}
   .abt-story-features{gap:16px;}
 }

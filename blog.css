@@ -194,7 +194,7 @@ body{max-width:100%;overflow-x:hidden;}
   .blg-cat-card{padding:24px 18px;}
   .blg-cat-icon{width:46px;height:46px;font-size:1.1rem;}
   .blg-author-img-wrap img{height:220px;}
-  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:100%;justify-content:center;}
+  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:fit-content;justify-content:center;}
   .breadcrumb{font-size:.74rem;flex-wrap:wrap;}
   .blg-feat-features{gap:16px;}
   .blg-post-body{padding:20px 16px;}

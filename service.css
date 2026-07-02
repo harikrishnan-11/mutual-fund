@@ -185,14 +185,14 @@
   .section-title{font-size:1.55rem !important;}
   .section-sub{font-size:.88rem;}
   .svc-card-img-wrap{height:140px;}
-  .svc-card-icon{width:44px;height:44px;font-size:1.05rem;left:18px;bottom:-18px;}
+  .svc-card-icon{width:44px;height:44px;font-size:1.05rem;left:18px;}
   .svc-card-body{padding:30px 18px 22px;}
   .svc-card-body h3{font-size:1.02rem;}
   .svc-step-circle{width:84px;height:84px;}
   .svc-step-circle i{font-size:1.4rem;}
   .price-amt{font-size:1.9rem;}
   .price-card{padding:26px 18px;}
-  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:100%;justify-content:center;}
+  .btn-gold,.btn-outline{padding:12px 22px;font-size:.86rem;width:fit-content;justify-content:center;}
   .svc-hero-inner{max-width:100%;}
   .breadcrumb{font-size:.74rem;flex-wrap:wrap;}
   .faq-q span{font-size:.85rem;}

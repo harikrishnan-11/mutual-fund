@@ -521,40 +521,16 @@
       return;
     }
 
-    // ── check for duplicate email in localStorage "stackly_users" ──
-    const email = fields.email.input.value.trim().toLowerCase();
-    let users = JSON.parse(localStorage.getItem('stackly_users') || '[]');
-    const exists = users.some(u => u.email === email);
-
-    if (exists) {
-      formFail.classList.add('show');
-      formFail.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    // ── save new user record ──
-    const newUser = {
-      firstName: fields.firstName.input.value.trim(),
-      lastName: fields.lastName.input.value.trim(),
-      email: email,
-      phone: fields.phone.input.value.trim(),
-      dob: fields.dob.input.value,
-      gender: fields.gender.input.value,
-      role: fields.role.input.value, // 'user' or 'admin'
-      city: fields.city.input.value.trim(),
-      pan: fields.pan.input.value.trim().toUpperCase(),
-      password: fields.password.input.value // demo only — never store plaintext in production
-    };
-    users.push(newUser);
-    localStorage.setItem('stackly_users', JSON.stringify(users));
+    // ── validation passed — no data is stored anywhere ──
+    const role = fields.role.input.value;
 
     signupBtn.disabled = true;
-    signupBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Creating Account...';
+    signupBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Redirecting...';
     formSuccess.classList.add('show');
     formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     setTimeout(() => {
-      window.location.href = './login.html?signup=success&role=' + encodeURIComponent(newUser.role);
+      window.location.href = './login.html?signup=success&role=' + encodeURIComponent(role);
     }, 1600);
   });
 </script>
